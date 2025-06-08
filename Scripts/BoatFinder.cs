@@ -19,10 +19,7 @@ namespace NANDCommand.Scripts
             { "kakam", 90 },
             { "junk", 80 },
             { "jong", 70 },
-            { "hbb", 144 },
-            { "clipper", 153 },
-            { "sloop", 163 },
-            { "cutter", 1 }
+            { "baghlah", 30 },
         };
 
 
