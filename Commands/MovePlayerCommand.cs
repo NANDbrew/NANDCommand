@@ -25,23 +25,12 @@ namespace NANDCommand.Commands
             float longitude = Convert.ToSingle(args[1]);
             float latitude = Convert.ToSingle(args[0]);
 
-            FloatingOriginManager.instance.StartCoroutine(TPToGlobeCoords(longitude, latitude));
-            ModConsoleLog.Log(Plugin.instance.Info, $"moved to {latitude}, {longitude}");
-        }
-
-        public static IEnumerator TPToGlobeCoords(float x, float z)
-        {
-            GameState.recovering = true;
-
             Vector3 globeOffset = (Vector3)Traverse.Create(FloatingOriginManager.instance).Field("globeOffset").GetValue();
-            Vector3 targetPos = new Vector3(x, 20f, z) * 9000 + globeOffset;
-            Refs.charController.transform.position = FloatingOriginManager.instance.RealPosToShiftingPos(targetPos);
-            yield return new WaitForEndOfFrame();
-            yield return new WaitForEndOfFrame();
+            Vector3 targetPos = new Vector3(longitude, 20f, latitude) * 9000 + globeOffset;
+            targetPos = FloatingOriginManager.instance.RealPosToShiftingPos(targetPos);
+            PlayerMover.MovePlayer(targetPos);
 
-            //yield return new WaitForSeconds(1);
-            GameState.recovering = false;
-
+            ModConsoleLog.Log(Plugin.instance.Info, $"moved to {latitude}, {longitude}");
         }
     }
 }

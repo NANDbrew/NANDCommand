@@ -17,37 +17,56 @@ namespace NANDCommand.Commands
         public override string Name => "TeleportTo";
         public override string[] Aliases => new string[1] { "TPTo" };
 
-        public override string Usage => "<island index>";
-        public override string Description => "Teleport to island scenery";
-        public override int MinArgs => 1;
+        public override string Usage => "<target type (island, boat)> <target (island index, boat index or vanilla boat name)>";
+        public override string Description => "Teleport to scenery, or boat if first argument is \"boat\"";
+        public override int MinArgs => 2;
 
         public override void OnRun(List<string> args)
         {
-            Debug.Log("moving?");
-            int index = Convert.ToInt32(args[0]);
-            Transform island = Refs.islands[index];
-            if (island == null)
+            float x = 0;
+            float y = 10;
+            float z = 0;
+
+            if (args[0].ToLower() == "island")
             {
-                ModConsoleLog.Error(Plugin.instance.Info, "can't find island");
-                return;
+                int index = args.Count == 1 ? Convert.ToInt32(args[0]) : Convert.ToInt32(args[1]);
+                var island = Refs.islands[index];
+                if (island == null)
+                {
+                    ModConsoleLog.Error(Plugin.instance.Info, "couldn't find target");
+                    return;
+                }
+                if (island.GetComponent<IslandHorizon>().overrideCenter is Transform center)
+                {
+                    x = center.position.x;
+                    z = center.position.z;
+                }
+                else
+                {
+                    x = island.position.x;
+                    z = island.position.z;
+                }
+                y = 100;
             }
-            FloatingOriginManager.instance.StartCoroutine(TPToIsland(island));
-            ModConsoleLog.Log(Plugin.instance.Info, $"moved to {island.name}");
+            else if (args[0].ToLower() == "boat")
+            {
+                if (BoatFinder.FindBoat(args[1]) is Transform target)
+                {
+                    x = target.position.x;
+                    z = target.position.z;
+                    y = 5;
+                }
+                else
+                {
+                    ModConsoleLog.Error(Plugin.instance.Info, "couldn't find target");
+                }
+            }
+
+            PlayerMover.MovePlayer(new Vector3(x, y, z));
+
+            //FloatingOriginManager.instance.StartCoroutine(MoveToObject(island, pad));
+            ModConsoleLog.Log(Plugin.instance.Info, $"moved player");
         }
 
-        public static IEnumerator TPToIsland(Transform island)
-        {
-            GameState.recovering = true;
-
-            /*Vector3 globeOffset = (Vector3)Traverse.Create(FloatingOriginManager.instance).Field("globeOffset").GetValue();
-            Vector3 targetPos = new Vector3(x, 20f, z) * 9000 + globeOffset;*/
-            Refs.charController.transform.position = island.position + Vector3.up * 150;
-            yield return new WaitForEndOfFrame();
-            yield return new WaitForEndOfFrame();
-
-            //yield return new WaitForSeconds(1);
-            GameState.recovering = false;
-
-        }
     }
 }

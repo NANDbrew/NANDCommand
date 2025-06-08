@@ -108,8 +108,10 @@ namespace NANDCommand.Commands
             }
             if (movingPlayer)
             {
-                yield return new WaitForSeconds(1);
+                RefsDirectory.instance.oceanRenderer.enabled = false;
+                yield return new WaitUntil(() => !GameState.wasInSettingsMenu);
                 GameState.recovering = false;
+                RefsDirectory.instance.oceanRenderer.enabled = true;
             }
         }
     }
