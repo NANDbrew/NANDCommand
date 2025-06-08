@@ -17,7 +17,7 @@ namespace NANDCommand.Commands
     public class ExportInfoCommand : Command
     {
         public override string Name => "ExportInfo";
-        public override string Usage => "<ExportInfo> <parts, objects, food>";
+        public override string Usage => "<parts, objects, items, food> [scene index or vanilla boat name]";
         public override string Description => "Export info to a .csv in \"Documents/Sailwind info dump\"";
         public override int MinArgs => 1;
 
@@ -54,8 +54,12 @@ namespace NANDCommand.Commands
             {
                 File.WriteAllText(Path.Combine(docPath, "object indexes" + ".csv"), GetObjectIndexes());
             }
+            else if (args[0].ToLower() == "items")
+            {
+                File.WriteAllText(Path.Combine(docPath, "items" + ".csv"), GetItemInfo());
+            }
 
-            
+
         }
 
         public static string GetObjectIndexes()
@@ -73,7 +77,26 @@ namespace NANDCommand.Commands
             }
             return text;
         }
-
+        public static string GetItemInfo()
+        {
+            string text = "name,mass,value" + Environment.NewLine;
+            string separator = ",";
+            for (int i = 1; i < PrefabsDirectory.instance.directory.Length; i++)
+            {
+                GameObject obj = PrefabsDirectory.instance.directory[i];
+                if (obj != null)
+                {
+                    if (obj.GetComponent<ShipItem>() is ShipItem item)
+                    {
+                        text += item.name + separator;
+                        text += item.mass + separator;
+                        text += item.value;
+                        text += Environment.NewLine;
+                    }
+                }
+            }
+            return text;
+        }
         public static string GetFoodInfo()
         {
             string text = "name,protein,vitamins,energy per bite,raw energy mult,spoil time,slice count,mass,value" + Environment.NewLine;
