@@ -15,7 +15,7 @@ namespace NANDCommand.Commands
     public class MoveBoatCommand : Command
     {
         public override string Name => "moveBoat";
-        public override string Usage => "<lat> <long> [boat (brig, cog, dhow, sanbuq, kakam, junk, jong, or scene index)] [bring nearby (yes, y)]";
+        public override string Usage => "<lat> <long> [scene index or vanilla boat name] [bring nearby (-y)]";
         public override string Description => "Teleport a boat (or current/last boat if unspecified) to lat/long. If \"bring nearby\" is on, will also teleport all owned boats within 100m of the primary boat";
         public override int MinArgs => 2;
 
@@ -25,7 +25,7 @@ namespace NANDCommand.Commands
             float longitude = Convert.ToSingle(args[1]);
             float latitude = Convert.ToSingle(args[0]);
 
-            bool bringNearby = args.Count > 2 && (args.Last().ToLower() == "yes" || args.Last().ToLower() == "y");
+            bool bringNearby = args.Count > 2 && args.Last().ToLower() == "-y";
             Transform boat = BoatFinder.FindBoat(args.Count > 2? args[2] : "");
 
             if (boat == null)
