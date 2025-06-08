@@ -19,8 +19,8 @@
 ## Set Time Scale
 - usage: SetTimeScale [multiplier] [flags]
 - sets day/night time scale.
-- if unspecified, resets to default (0.008)
-- flags: -r (treat multiplier as the ratio of game time to real e.g. 28.8 is default)
+- if unspecified, resets to default (0.008 aka 28.8)
+- flags: -r (treat multiplier as the ratio of game time to real)
 ## Export Info
 - usage: ExportInfo \<item type (parts, boats, food)> [scene index or vanilla boat name]
 - exports item info and indexes
