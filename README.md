@@ -29,3 +29,6 @@
   - "objects" exports all occupied indexes in `SaveLoadManager.currentObjects` (boats, mooring ropes, npc boats, storms)
   - "food" exports food items info (name, mass, energy, etc.)
   - "items" exports all items info (name, mass, value)
+## settings
+- Patch Port teleport
+  - fix SailwindConsole's Teleport command so it puts you on the ground
