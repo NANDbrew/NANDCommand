@@ -13,7 +13,7 @@
 - usage: MovePlayer \<lat> \<long>
 - teleport to globe coords
 ## Teleport To
-- usage: TeleportTo \<island index>
+- usage: TeleportTo \<target type (island, boat)> \<target (island index, boat index or vanilla boat name)>
 - useful for teleporting to islands with no port
 - alias: TpTo
 ## Set Time Scale
