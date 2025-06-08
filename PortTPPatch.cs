@@ -14,6 +14,7 @@ namespace NANDCommand
     {
         private static void Prefix(Port __instance, string ___portName, ref bool ___teleportPlayer)
         {
+            if (!Plugin.patchPortTeleport.Value) return;
             if (___teleportPlayer)
             {
                 __instance.StartCoroutine(Teleport(__instance.transform));

@@ -17,7 +17,7 @@ namespace NANDCommand
         public const string PLUGIN_VERSION = "1.0.0";
 
         //--settings--
-        //internal ConfigEntry<bool> someSetting;
+        internal static ConfigEntry<bool> patchPortTeleport;
 
         internal static Plugin instance;
 
@@ -32,7 +32,8 @@ namespace NANDCommand
             ModConsole.AddCommand(new SetTimescaleCommand());
             ModConsole.AddCommand(new TpToCommand());
             ModConsole.AddCommand(new ExportInfoCommand());
-            //someSetting = Config.Bind("Settings", "Some setting", false);
+
+            patchPortTeleport = Config.Bind("Settings", "Patch Port teleport", true, new ConfigDescription("Patch SailwindConsole's Teleport command so it puts you on the ground"));
 
         }
     }
