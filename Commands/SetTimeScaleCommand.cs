@@ -15,7 +15,7 @@ namespace NANDCommand.Commands
     {
         public override string Name => "setTimeScale";
 
-        public override string Usage => "[float time] [use ratio (-r)]";
+        public override string Usage => "[float time] [flag (-r, -p)]";
 
         public override string Description => "Sets day/night time scale. if unspecified, resets to default (0.008 aka 28.8)";
 
@@ -34,6 +34,10 @@ namespace NANDCommand.Commands
             if (args.Count > 1 && args.Last().ToLower() == "-r")
             {
                 scale /= 3600;
+            }
+            else if (args.Count > 1 && args.Last().ToLower() == "-p")
+            {
+                scale = (scale / 100f) * 0.008f;
             }
             Sun.sun.initialTimescale = scale;
             ModConsoleLog.Log(Plugin.instance.Info, $"setting time scale to {scale} aka {scale * 3600}");
