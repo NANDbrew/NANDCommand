@@ -6,7 +6,7 @@
 - teleport a boat (or current/last boat if unspecified) to the nearest shipyard (if loaded). Will set boat as owned
 - alias: BTS
 ## Move Boat
-- usage: MoveBoat \<lat> \<long> [boat name or index] [flags]
+- usage: MoveBoat \<lat> \<long> [boat name or index] [flag]
 - Teleport a boat (or current/last boat if unspecified) to lat/long.
 - flags: -y (also teleport all owned boats within 100m of the primary boat)
 ## Move Player
@@ -18,7 +18,7 @@
 - useful for teleporting to islands with no port
 - alias: TpTo
 ## Set Time Scale
-- usage: SetTimeScale [multiplier] [flags]
+- usage: SetTimeScale [multiplier] [flag]
 - sets day/night time scale.
 - if unspecified, resets to default (0.008 aka 28.8)
 - flags:
