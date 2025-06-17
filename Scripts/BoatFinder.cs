@@ -30,13 +30,13 @@ namespace NANDCommand.Scripts
 
         public static Transform FindBoat(string input)
         {
-            Transform boat;
+            //Transform boat;
             if (!boatNames.TryGetValue(input, out int index) || !SaveLoadManager.instance.GetCurrentObjects()[index])
             {
                 int.TryParse(input, out index);
             }
-            boat = SaveLoadManager.instance.GetCurrentObjects()[index]?.GetComponent<PurchasableBoat>()?.transform ?? GameState.lastBoat;
-            return boat;
+            
+            return SaveLoadManager.instance.GetCurrentObjects()[index]?.GetComponent<PurchasableBoat>()?.transform ?? null;
         }
     }
 }

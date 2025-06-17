@@ -70,6 +70,10 @@
     <Reference Include="MonoMod.Utils, Version=21.4.21.3, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\MonoMod.Utils.21.4.21.3\lib\net40\MonoMod.Utils.dll</HintPath>
     </Reference>
+    <Reference Include="Oculus.VR, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Sailwind\Sailwind_Data\Managed\Oculus.VR.dll</HintPath>
+    </Reference>
     <Reference Include="SailwindConsole">
       <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Sailwind\BepInEx\plugins\SailwindConsole\SailwindConsole.dll</HintPath>
     </Reference>
@@ -85,8 +89,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CheatsPatch.cs" />
+    <Compile Include="Commands\BringBoatCommand2.cs" />
     <Compile Include="Commands\BringBoatCommand.cs" />
     <Compile Include="Commands\ExportInfoCommand.cs" />
+    <Compile Include="Commands\CheatSpeedCommand.cs" />
     <Compile Include="Commands\TpToCommand.cs" />
     <Compile Include="Commands\MovePlayerCommand.cs" />
     <Compile Include="Commands\MoveBoatCommand.cs" />
