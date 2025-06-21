@@ -5,6 +5,11 @@
 - boat names for vanilla boats, others must be referenced by index
 - teleport a boat (or current/last boat if unspecified) to the nearest shipyard (if loaded). Will set boat as owned
 - alias: BTS
+## Bring To Port 
+- usage: BringToPort [boat name or index]
+- boat names for vanilla boats, others must be referenced by index
+- teleport a boat (or current/last boat if unspecified) to the nearest recovery port (if loaded). Will set boat as owned
+- alias: BTP
 ## Move Boat
 - usage: MoveBoat \<lat> \<long> [boat name or index] [flag]
 - Teleport a boat (or current/last boat if unspecified) to lat/long.
@@ -31,6 +36,10 @@
   - "objects" exports all occupied indexes in `SaveLoadManager.currentObjects` (boats, mooring ropes, npc boats, storms)
   - "food" exports food items info (name, mass, energy, etc.)
   - "items" exports all items info (name, mass, value)
+## Cheat Speed
+- usage: CheatSpeed [speed]
+- if speed is unspecified, resets to 0
+- if set to a positive number, enables holding W/S while using a boat's steering wheel to push forward/back. 
 ## settings
 - Patch Port teleport
   - fix SailwindConsole's Teleport command so it puts you on the ground
