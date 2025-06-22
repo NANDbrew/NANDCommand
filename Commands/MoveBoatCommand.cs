@@ -26,7 +26,8 @@ namespace NANDCommand.Commands
             float latitude = Convert.ToSingle(args[0]);
 
             bool bringNearby = args.Count > 2 && args.Last().ToLower() == "-y";
-            Transform boat = BoatFinder.FindBoat(args.Count > 2? args[2] : "");
+            //Transform boat = BoatFinder.FindBoat(args.Count > 2? args[2] : "");
+            Transform boat = args.Count > 2 ? BoatFinder.FindBoat(args[2]) : BoatFinder.FindBoat();
 
             if (boat == null)
             {
