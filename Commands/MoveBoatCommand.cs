@@ -41,7 +41,6 @@ namespace NANDCommand.Commands
 
         public static IEnumerator MoveBoatToGlobeCoords(float x, float z, bool bringNearby, Transform boat)
         {
-
             boat.GetComponent<PurchasableBoat>().LoadAsPurchased();
             boat.GetComponent<BoatDamage>().waterLevel = 0;
 
@@ -51,27 +50,15 @@ namespace NANDCommand.Commands
             Dictionary<PickupableBoatMooringRope, GameObject> ropeMoorings = new Dictionary<PickupableBoatMooringRope, GameObject>();
 
             Vector3 globeOffset = (Vector3)Traverse.Create(FloatingOriginManager.instance).Field("globeOffset").GetValue();
-            Vector3 currentPos = FloatingOriginManager.instance.ShiftingPosToRealPos(boat.position);
-            Vector3 targetPos = new Vector3(x, 0f, z) * 9000 + globeOffset;
-            targetPos = new Vector3(targetPos.x, currentPos.y, targetPos.z);
+            Vector3 targetPos = new Vector3(x, 0f, z) * 9000 + globeOffset + Vector3.up * 5;
 
             BoatMooringRopes ropes = boat.GetComponent<BoatMooringRopes>();
-
-            foreach (var rope in ropes.ropes)
-            {
-                if (rope.IsMoored() && !rope.transform.parent.CompareTag("Boat"))
-                {
-                    rope.Unmoor();
-                    rope.ResetRopePos();
-                }
-            }            //ropes.UnmoorAllRopes();
             ropes.GetAnchorController().ResetAnchor();
 
             PurchasableBoat[] nearbyBoats = new PurchasableBoat[0];
             Vector3[] relVectors = new Vector3[0];
             if (bringNearby)
             {
-
                 // Record nearby boat positions relative to main boat
                 nearbyBoats = GameObject.FindObjectsOfType<PurchasableBoat>().Where(o => (o.transform != boat && o.isPurchased() && (o.transform.position - GameState.lastBoat.transform.position).sqrMagnitude < 10000)).ToArray();
                 relVectors = new Vector3[nearbyBoats.Length];
@@ -90,6 +77,19 @@ namespace NANDCommand.Commands
                     }
                     relVectors[i] = nearBoat.transform.position - boat.position;
                 }
+
+                foreach (var rope in ropes.ropes)
+                {
+                    if (rope.IsMoored() && !rope.transform.parent.CompareTag("Boat"))
+                    {
+                        rope.Unmoor();
+                        rope.ResetRopePos();
+                    }
+                }
+            }
+            else
+            {
+                ropes.UnmoorAllRopes();
             }
 
             // Move main boat and set safe rotation
