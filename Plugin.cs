@@ -13,7 +13,7 @@ namespace NANDCommand
     {
         public const string PLUGIN_ID = "com.nandbrew.nandcommand";
         public const string PLUGIN_NAME = "NANDCommand";
-        public const string PLUGIN_VERSION = "1.0.5";
+        public const string PLUGIN_VERSION = "1.0.4";
 
         //--settings--
         internal static ConfigEntry<bool> patchPortTeleport;
