@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using HarmonyLib;
+﻿using HarmonyLib;
 using NANDCommand.Scripts;
 using UnityEngine;
 
@@ -18,8 +12,8 @@ namespace NANDCommand
             if (!Plugin.patchPortTeleport.Value) return true;
             if (___teleportPlayer)
             {
-                var targetPos = new Vector3(__instance.transform.position.x, __instance.transform.localPosition.y, __instance.transform.position.z);
-                PlayerMover.MovePlayer(targetPos);
+                //var targetPos = new Vector3(__instance.transform.position.x, __instance.transform.localPosition.y, __instance.transform.position.z);
+                PlayerMover.MovePlayer(Vector3.up, __instance.transform);
                 ___teleportPlayer = false;
                 Debug.Log("Debug teleporting player to " + ___portName);
 
