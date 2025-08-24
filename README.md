@@ -39,7 +39,20 @@
 ## Cheat Speed
 - usage: CheatSpeed [speed]
 - if speed is unspecified, resets to 0
-- if set to a positive number, enables holding W/S while using a boat's steering wheel to push forward/back. 
+- if set to a positive number, enables holding W/S while using a boat's steering wheel to push forward/back.
+## SetWindKnots
+- usage: SetWindKnots <wind speed (int knots)>
+- sets the wind speed to the specified speed
+## SetWeather
+- usage: SetWeather <weather (clear, cloudy, rain, storm)> [seconds]
+- force the weather for the specified seconds, or 10 if unspecified
+## GetDistance
+- usage: GetDistance <target type (island, boat, port)> <target (island index, boat index or vanilla boat name, port name)>
+- gets the distance from the player to the specified target
+- alias: GetDist
+## FixMe
+- teleports the player 1m upward
+
 ## settings
 - Patch Port teleport
   - fix SailwindConsole's Teleport command so it puts you on the ground
