@@ -10,19 +10,19 @@ namespace NANDCommand.Commands
         public override int MinArgs => 0;
         public override string Usage => "";
 
-        public override string Description => "Toggle impact damage";
+        public override string Description => "Toggle damage and wear";
 
         public override void OnRun(List<string> args)
         {
             if (Plugin.ignoreDamage)
             {
                 Plugin.ignoreDamage = false;
-                ModConsoleLog.Log(Plugin.instance.Info, "Impact damage disabled!");
+                ModConsoleLog.Log(Plugin.instance.Info, "Damage disabled!");
             }
             else
             {
                 Plugin.ignoreDamage = true;
-                ModConsoleLog.Log(Plugin.instance.Info, "Impact damage enabled!");
+                ModConsoleLog.Log(Plugin.instance.Info, "Damage enabled!");
             }
 
         }
