@@ -63,6 +63,7 @@ namespace NANDCommand.Commands
                 else
                 {
                     ModConsoleLog.Error(Plugin.instance.Info, "couldn't find target");
+                    return;
                 }
             }
             else if (args[0].ToLower() == "coords")
