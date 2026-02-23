@@ -15,7 +15,7 @@ namespace NANDCommand.Commands
     public class MoveBoatCommand : Command
     {
         public override string Name => "moveBoat";
-        public override string Usage => "<lat> <long> [scene index or vanilla boat name] [bring nearby (-y)]";
+        public override string Usage => "<lat> <long> [index or vanilla boat name] [bring nearby (-y)]";
         public override string Description => "Teleport a boat (or current/last boat if unspecified) to lat/long. If \"bring nearby\" is on, will also teleport all owned boats within 100m of the primary boat";
         public override int MinArgs => 2;
 

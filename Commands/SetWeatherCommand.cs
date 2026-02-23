@@ -11,7 +11,7 @@ namespace NANDCommand.Commands
         public override string Name => "setWeather";
         public override int MinArgs => 1;
         public override string Usage => "<weather set (clear, cloudy, rain, storm)> [seconds]";
-        public override string Description => "Change the weather for the specified number of frames, or 1000 if unspecified";
+        public override string Description => "Change the weather for the specified time, or 10 if unspecified";
 
         private int coroutinesRunning = 0;
         public override void OnRun(List<string> args)

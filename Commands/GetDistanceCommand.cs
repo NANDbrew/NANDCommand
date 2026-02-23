@@ -9,22 +9,22 @@ namespace NANDCommand.Commands
 {
     public class GetDistanceCommand : Command
     {
-        public override string Name => "GetDistance";
-        public override string[] Aliases => new string[1] { "GetDist" };
+        public override string Name => "getDistance";
+        public override string[] Aliases => new string[1] { "getDist" };
 
         public override string Usage => "<target type (island, boat, port)> <target (island index, boat index or vanilla boat name, port name)>";
-        public override string Description => "Get distance from player to target";
+        public override string Description => "Get distance from player to target\nAlias: getDist";
         public override int MinArgs => 2;
 
         public override void OnRun(List<string> args)
         {
-            string targetName = args[2];
+            string targetName = "";
             float x = 0;
             float z = 0;
 
             if (args[0].ToLower() == "island")
             {
-                int index = args.Count == 1 ? Convert.ToInt32(args[0]) : Convert.ToInt32(args[1]);
+                int index = Convert.ToInt32(args[1]);
                 var island = Refs.islands[index];
                 if (island == null)
                 {
