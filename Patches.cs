@@ -8,14 +8,23 @@ namespace NANDCommand
 {
     internal class Patches
     {
-        [HarmonyPatch(typeof(ShipItem))]
-        private static class SomeClassPatch
+        [HarmonyPatch(typeof(BoatDamage))]
+        private static class BoatDamagePatches
         {
-            [HarmonyPatch("Awake")]
+            [HarmonyPatch("Impact")]
             [HarmonyPrefix]
-            public static void SomeMethodPatch()
+            public static void ImpactPatch(ref float force)
             {
-
+                if (Plugin.ignoreDamage)
+                {
+                    force = 0;
+                }
+            }
+            [HarmonyPatch("Impact")]
+            [HarmonyPrefix]
+            public static bool DailyDamagePatch()
+            {
+                return !Plugin.ignoreDamage;
             }
         }
     }

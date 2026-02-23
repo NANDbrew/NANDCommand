@@ -90,12 +90,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CheatsPatch.cs" />
+    <Compile Include="Commands\GetWaterCommand.cs" />
+    <Compile Include="Commands\SetWaterCommand.cs" />
+    <Compile Include="Commands\SetDamageCommand.cs" />
+    <Compile Include="Commands\GetDamageCommand.cs" />
+    <Compile Include="Commands\BringBoatCommand3.cs" />
     <Compile Include="Commands\BringBoatCommand2.cs" />
     <Compile Include="Commands\BringBoatCommand.cs" />
     <Compile Include="Commands\ExportInfoCommand.cs" />
     <Compile Include="Commands\CheatSpeedCommand.cs" />
+    <Compile Include="Commands\CookFoodCommand.cs" />
+    <Compile Include="Commands\SmokeFoodCommand.cs" />
     <Compile Include="Commands\FixMeCommand.cs" />
     <Compile Include="Commands\SetWeatherCommand.cs" />
+    <Compile Include="Commands\ToggleDamageCommand.cs" />
     <Compile Include="Commands\SetWindKnotsCommand.cs" />
     <Compile Include="Commands\GetDistanceCommand.cs" />
     <Compile Include="Commands\TpToCommand.cs" />
