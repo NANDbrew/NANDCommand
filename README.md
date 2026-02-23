@@ -53,6 +53,38 @@
 ## FixMe
 - teleports the player 1m upward
 
+## BringToMe
+- usage: BringToMe [index or vanilla boat name]
+- Teleport a boat (or current/last boat if unspecified) to you. Will set boat as owned. DO NOT USE WHILE ON LAND!
+- alias: BTM
+
+## CookFood
+- cook currently held food item
+
+## SmokeFood
+- smoke currently held food item
+
+## GetDamage
+ - usage: GetDamage [index or vanilla boat name]
+ - returns the current damage percentage of the targeted boat (or current/last boat if unspecified)
+
+## SetDamage
+- usage: SetDamage [index or vanilla boat name] <damage percent>
+- set the current damage percentage of the targeted boat (or current/last boat if unspecified)
+
+## GetWater
+- usage: GetWater [index or vanilla boat name]
+- returns the current water level and capacity of the targeted boat.
+- alias: getBilge
+
+## SetWater
+- usage: SetWater [index or vanilla boat name] <water level>
+- Set the bilge water level of the targeted boat (or current/last boat if unspecified). Accepts "units" or percentage ("setWater 20" will assume units, "setWater 20%" will be percentage).
+- Alias: setBilge
+
+## ToggleDamage
+- enable/disable damage and wear.
+
 ## settings
 - Patch Port teleport
   - fix SailwindConsole's Teleport command so it puts you on the ground
