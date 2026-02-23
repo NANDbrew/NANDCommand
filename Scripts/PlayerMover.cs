@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using SailwindConsole;
 using System.Collections;
 using UnityEngine;
 
@@ -16,9 +17,11 @@ namespace NANDCommand.Scripts
             Transform player = Refs.charController.transform;
             if (GameState.currentBoat != null)
             {
-                Refs.observerMirror.transform.Translate(Vector3.up * 50);
-                var embarkTrigger = Refs.observerMirror.GetComponentInChildren<PlayerEmbarkDisembarkTrigger>();
-                AccessTools.Method(typeof(PlayerEmbarkDisembarkTrigger), "ExitBoat").Invoke(embarkTrigger, null);
+                //player.Translate(Vector3.up * 50);
+                
+                GameObject.FindObjectOfType<PlayerEmbarkerNew>().InvokePrivateMethod("PlayerDisembark", null);
+
+                //yield return new WaitForEndOfFrame();
             }
             //yield return new WaitForFixedUpdate();
 
