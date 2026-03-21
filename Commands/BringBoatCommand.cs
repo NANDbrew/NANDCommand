@@ -37,7 +37,7 @@ namespace NANDCommand.Commands
                 return;
             }
 
-            shipyard.StartCoroutine(MoveBoatToShipyard(shipyard, boat.transform));
+            shipyard.StartCoroutine(BoatMover.IMoveBoat(shipyard.shipReleasePosition.position, shipyard.shipReleasePosition.rotation, boat.transform));
             ModConsoleLog.Log(Plugin.instance.Info, $"moved boat {boat.name} to {shipyard.name}");
         }
 

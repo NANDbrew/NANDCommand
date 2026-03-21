@@ -35,15 +35,19 @@ namespace NANDCommand.Commands
                 ModConsoleLog.Error(Plugin.instance.Info, "can't find port");
                 return;
             }
-            port.StartCoroutine(MoveBoatToPort(port, boat.transform));
+            port.StartCoroutine(BoatMover.IMoveBoat(port.GetBoatPos(), port.boatPos.rotation, boat.transform));
+            BoatMooringRopes ropes = boat.GetComponent<BoatMooringRopes>();
+            ropes.MoorClosestRope(port.mooringFront);
+            ropes.MoorClosestRope(port.mooringBack);
+
+
             ModConsoleLog.Log(Plugin.instance.Info, $"moved boat {boat.name} to {port.name}");
         }
         
-        public static IEnumerator MoveBoatToPort(RecoveryPort port, Transform boat)
+/*        public static IEnumerator MoveBoatToPort(RecoveryPort port, Transform boat)
         {
             boat.GetComponent<PurchasableBoat>().LoadAsPurchased();
             boat.GetComponent<BoatDamage>().waterLevel = 0;
-            BoatMooringRopes ropes = boat.GetComponent<BoatMooringRopes>();
             ropes.UnmoorAllRopes();
             ropes.GetAnchorController().ResetAnchor();
             yield return new WaitUntil(() => (GameState.wasInSettingsMenu == true));
@@ -51,9 +55,7 @@ namespace NANDCommand.Commands
 
             boat.transform.SetPositionAndRotation(port.GetBoatPos(), port.boatPos.rotation);
             boat.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            ropes.MoorClosestRope(port.mooringFront);
-            ropes.MoorClosestRope(port.mooringBack);
-        }
+        }*/
 
     }
 }
