@@ -91,9 +91,11 @@ namespace NANDCommand.Commands
             string text = "index,name,lat,long,port index,port name,has carrier,currency exchange,main import,main export" + Environment.NewLine;
             for (int i = 0; i < Refs.islands.Count(); i++)
             {
+                Debug.Log("index = " + i);
                 text += i + separator;
-                if (Refs.islands[i]?.GetComponent<IslandHorizon>() is IslandHorizon horizon)
+                if (Refs.islands[i] != null && Refs.islands[i].GetComponent<IslandHorizon>() is IslandHorizon horizon)
                 {
+                    Debug.Log("is non-null island");
                     Transform center = horizon.overrideCenter ?? Refs.islands[i];
                     Vector3 coords = FloatingOriginManager.instance.GetGlobeCoords(center);
                     text += horizon.name + separator;
@@ -102,6 +104,7 @@ namespace NANDCommand.Commands
 
                     if (horizon.economy is IslandEconomy econ && econ.GetComponent<Port>() is Port port)
                     {
+                        Debug.Log("and has economy and port");
                         text += port.portIndex + separator;
                         text += port.GetPortName() + separator;
                         text += (i < CargoCarrier.carriers.Length && CargoCarrier.carriers[i] != null)? "yes" : "no";
@@ -109,6 +112,7 @@ namespace NANDCommand.Commands
 
                         if (econ.GetComponent<IslandMarket>() is IslandMarket market)
                         {
+                            Debug.Log("and even has market");
                             text += market.allowCurrencyConversion? "yes" : "no";
                             text += separator;
                             KeyValuePair<int, float> highest = new KeyValuePair<int, float>();
@@ -125,8 +129,13 @@ namespace NANDCommand.Commands
                                     lowest = new KeyValuePair<int, float>(j, good);
                                 }
                             }
-                            text += PrefabsDirectory.instance.GetGood(lowest.Key).name + separator;
-                            text += PrefabsDirectory.instance.GetGood(highest.Key).name + separator;
+                            var highestGood = PrefabsDirectory.instance.GetGood(highest.Key);
+                            var lowestGood = PrefabsDirectory.instance.GetGood(lowest.Key);
+
+                            text += lowestGood != null ? lowestGood.name : "none";
+                            text += separator;
+                            text += highestGood != null ? highestGood.name : "none";
+                            text += separator;
                         }
                     }
                 }
