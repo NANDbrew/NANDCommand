@@ -21,10 +21,18 @@ namespace NANDCommand.Commands
 
         public override void OnRun(List<string> args)
         {
-            Debug.Log("moving?");
-            float longitude = Convert.ToSingle(args[1]);
-            float latitude = Convert.ToSingle(args[0]);
-
+            float longitude;
+            float latitude;
+            if (args[0].ToLower() == "random" && args[1].ToLower() == "location")
+            {
+                longitude = UnityEngine.Random.Range(-12, 32);
+                latitude = UnityEngine.Random.Range(26, 46);
+            }
+            else
+            {
+                longitude = Convert.ToSingle(args[1]);
+                latitude = Convert.ToSingle(args[0]);
+            }
             bool bringNearby = args.Count > 2 && args.Last().ToLower() == "-y";
             //Transform boat = BoatFinder.FindBoat(args.Count > 2? args[2] : "");
             Transform boat = args.Count > 2 ? BoatFinder.FindBoat(args[2]) : BoatFinder.FindBoat();
