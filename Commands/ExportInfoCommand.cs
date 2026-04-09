@@ -17,7 +17,7 @@ namespace NANDCommand.Commands
     public class ExportInfoCommand : Command
     {
         public override string Name => "ExportInfo";
-        public override string Usage => "<parts, indexes, items, food, islands> [scene index or vanilla boat name]";
+        public override string Usage => "<parts, indexes, items, food, islands, boats> [scene index or vanilla boat name]";
         public override string Description => "Export info to a .csv in \"Documents/Sailwind info dump\"";
         public override int MinArgs => 1;
 
@@ -28,55 +28,66 @@ namespace NANDCommand.Commands
             string docPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Sailwind info dump");
             //try
             //{
-                if (!Directory.Exists(docPath)) Directory.CreateDirectory(docPath);
-                if (args[0].ToLower() == "parts")
+            if (!Directory.Exists(docPath)) Directory.CreateDirectory(docPath);
+            if (args[0].ToLower() == "parts")
+            {
+                Transform boat = BoatFinder.FindBoat(args.Count > 1 ? args[1] : "");
+                if (boat == null)
                 {
-                    Transform boat = BoatFinder.FindBoat(args.Count > 1 ? args[1] : "");
-                    if (boat == null)
+                    ModConsoleLog.Log(Plugin.instance.Info, "Can't find boat. Exporting all");
+                    foreach (var obj in SaveLoadManager.instance.GetCurrentObjects())
                     {
-                        ModConsoleLog.Log(Plugin.instance.Info, "Can't find boat. Exporting all");
-                        foreach (var obj in SaveLoadManager.instance.GetCurrentObjects())
+                        if (obj != null && obj.GetComponent<BoatCustomParts>() is BoatCustomParts parts)
                         {
-                            if (obj != null && obj.GetComponent<BoatCustomParts>() is BoatCustomParts parts)
-                            {
-                                texts.Add(obj.name, GetBoatPartsInfo(parts));
-                                // special file writing
-                                //File.WriteAllText(Path.Combine(docPath, obj.name + ".csv"), GetBoatPartsInfo(parts));
-                            }
+                            texts.Add(obj.name, GetBoatPartsInfo(parts));
+                            // special file writing
+                            //File.WriteAllText(Path.Combine(docPath, obj.name + ".csv"), GetBoatPartsInfo(parts));
                         }
                     }
-                    else
-                    {
-                        texts.Add(boat.name, GetBoatPartsInfo(boat.GetComponent<BoatCustomParts>()));
-                        //File.WriteAllText(Path.Combine(docPath, boat.name + ".csv"), GetBoatPartsInfo(boat.GetComponent<BoatCustomParts>()));
-                    }
                 }
-                else if (args[0].ToLower() == "food")
+                else
                 {
-                    texts.Add("food items", GetFoodInfo());
-                    //File.WriteAllText(Path.Combine(docPath, "food items" + ".csv"), GetFoodInfo());
+                    texts.Add(boat.name, GetBoatPartsInfo(boat.GetComponent<BoatCustomParts>()));
+                    //File.WriteAllText(Path.Combine(docPath, boat.name + ".csv"), GetBoatPartsInfo(boat.GetComponent<BoatCustomParts>()));
                 }
-                else if (args[0].ToLower() == "indexes")
-                {
-                    texts.Add("object indexes", GetObjectIndexes());
-                    //File.WriteAllText(Path.Combine(docPath, "object indexes" + ".csv"), GetObjectIndexes());
-                }
-                else if (args[0].ToLower() == "items")
-                {
-                    texts.Add("items", GetItemInfo());
-                    //File.WriteAllText(Path.Combine(docPath, "items" + ".csv"), GetItemInfo());
-                }
-                else if (args[0].ToLower() == "islands")
-                {
-                    texts.Add("islands", GetIslandsInfo());
-                }
+            }
+            else if (args[0].ToLower() == "food")
+            {
+                texts.Add("food items", GetFoodInfo());
+                //File.WriteAllText(Path.Combine(docPath, "food items" + ".csv"), GetFoodInfo());
+            }
+            else if (args[0].ToLower() == "indexes")
+            {
+                texts.Add("object indexes", GetObjectIndexes());
+                //File.WriteAllText(Path.Combine(docPath, "object indexes" + ".csv"), GetObjectIndexes());
+            }
+            else if (args[0].ToLower() == "items")
+            {
+                texts.Add("items", GetItemInfo());
+                //File.WriteAllText(Path.Combine(docPath, "items" + ".csv"), GetItemInfo());
+            }
+            else if (args[0].ToLower() == "islands")
+            {
+                texts.Add("islands", GetIslandsInfo());
+            }
+            else if (args[0].ToLower() == "boats")
+            {
+                texts.Add("boats", GetBoatsInfo());
+            }
 
-                foreach (var text in texts)
+            foreach (var text in texts)
+            {
+                string path = Path.Combine(docPath, text.Key + ".csv");
+                try
                 {
-                    string path = Path.Combine(docPath, text.Key + ".csv");
                     File.WriteAllText(path, text.Value);
                     ModConsoleLog.Log(Plugin.instance.Info, $"Wrote file: {path}");
                 }
+                catch
+                {
+                    ModConsoleLog.Error(Plugin.instance.Info, $"Failed to write file: {path}");
+                }
+            }
             //}
             //catch
             //{
@@ -247,6 +258,43 @@ namespace NANDCommand.Commands
             return text;
         }
 
+        public static string GetBoatsInfo()
+        {
+            string separator = ",";
+            Debug.Log("attempting to save boats info");
+            string text = "index,object name,price,base mass,water capacity,water intake rate,water drain rate,durability days,impact multiplier,wear steepness,impact threshold" + Environment.NewLine;
 
+            foreach (var thing in SaveLoadManager.instance.GetCurrentObjects())
+            {
+                if (thing != null && thing.GetComponent<PurchasableBoat>() is PurchasableBoat boat)
+                {
+                    text += thing.sceneIndex;
+                    text += separator;
+                    text += boat.gameObject.name;
+                    text += separator;
+                    text += boat.price;
+                    text += separator;
+                    text += AccessTools.Field(typeof(BoatMass), "selfMass").GetValue(boat.GetComponent<BoatMass>());
+                    text += separator;
+                    BoatDamage damage = boat.GetComponent<BoatDamage>();
+                    text += damage.waterUnitsCapacity;
+                    text += separator;
+                    text += damage.waterIntakeRate;
+                    text += separator;
+                    text += damage.waterDrainRate;
+                    text += separator;
+                    text += damage.durabilityDays;
+                    text += separator;
+                    text += damage.impactDamageMult;
+                    text += separator;
+                    text += damage.wearSteepness;
+                    text += separator;
+                    text += damage.minimumImpactVelocity;
+                    text += Environment.NewLine;
+                }
+
+            }
+            return text;
+        }
     }
 }
