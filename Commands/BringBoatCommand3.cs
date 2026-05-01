@@ -26,26 +26,9 @@ namespace NANDCommand.Commands
             var player = Refs.observerMirror;
             Vector3 targetPos = player.transform.position;
             player.transform.Translate(Vector3.up * 20f);
-            player.StartCoroutine(BoatMover.IMoveBoat(targetPos, boat.rotation, boat.transform));
+            Plugin.instance.StartCoroutine(BoatMover.IMoveBoat(targetPos, boat.rotation, boat.transform));
             ModConsoleLog.Log(Plugin.instance.Info, $"moved boat {boat.name}");
         }
-
-/*        public static IEnumerator MoveBoatToPlayer(Transform player, Transform boat)
-        {
-            boat.GetComponent<PurchasableBoat>().LoadAsPurchased();
-            boat.GetComponent<BoatDamage>().waterLevel = 0;
-            BoatMooringRopes ropes = boat.GetComponent<BoatMooringRopes>();
-            yield return new WaitUntil(() => (GameState.wasInSettingsMenu == true));
-            ropes.UnmoorAllRopes();
-            ropes.GetAnchorController().ResetAnchor();
-            //yield return new WaitForSeconds(0.2f);
-            yield return new WaitForFixedUpdate();
-            yield return new WaitForFixedUpdate();
-
-            boat.transform.SetPositionAndRotation(targetPos, boat.rotation);
-            boat.GetComponent<Rigidbody>().velocity = Vector3.zero;
-
-        }*/
 
     }
 }

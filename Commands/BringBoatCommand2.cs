@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using BepInEx;
 using HarmonyLib;
@@ -35,27 +36,21 @@ namespace NANDCommand.Commands
                 ModConsoleLog.Error(Plugin.instance.Info, "can't find port");
                 return;
             }
-            port.StartCoroutine(BoatMover.IMoveBoat(port.GetBoatPos(), port.boatPos.rotation, boat.transform));
-            BoatMooringRopes ropes = boat.GetComponent<BoatMooringRopes>();
-            ropes.MoorClosestRope(port.mooringFront);
-            ropes.MoorClosestRope(port.mooringBack);
 
+            Plugin.instance.StartCoroutine(MoveBoat(port, boat));
 
             ModConsoleLog.Log(Plugin.instance.Info, $"moved boat {boat.name} to {port.name}");
         }
-        
-/*        public static IEnumerator MoveBoatToPort(RecoveryPort port, Transform boat)
-        {
-            boat.GetComponent<PurchasableBoat>().LoadAsPurchased();
-            boat.GetComponent<BoatDamage>().waterLevel = 0;
-            ropes.UnmoorAllRopes();
-            ropes.GetAnchorController().ResetAnchor();
-            yield return new WaitUntil(() => (GameState.wasInSettingsMenu == true));
-            yield return new WaitForSeconds(0.2f);
 
-            boat.transform.SetPositionAndRotation(port.GetBoatPos(), port.boatPos.rotation);
-            boat.GetComponent<Rigidbody>().velocity = Vector3.zero;
-        }*/
+        private static IEnumerator MoveBoat(RecoveryPort port, Transform boat)
+        {
+            Plugin.instance.StartCoroutine(BoatMover.IMoveBoat(port.GetBoatPos(), port.boatPos.rotation, boat.transform));
+            yield return new WaitForFixedUpdate();
+            yield return new WaitUntil(() => BoatMover.movingBoat == false);
+            BoatMooringRopes ropes = boat.GetComponent<BoatMooringRopes>();
+            ropes.MoorClosestRope(port.mooringFront);
+            ropes.MoorClosestRope(port.mooringBack);
+        }
 
     }
 }

@@ -37,24 +37,10 @@ namespace NANDCommand.Commands
                 return;
             }
 
-            shipyard.StartCoroutine(BoatMover.IMoveBoat(shipyard.shipReleasePosition.position, shipyard.shipReleasePosition.rotation, boat.transform));
+            Plugin.instance.StartCoroutine(BoatMover.IMoveBoat(shipyard.shipReleasePosition.position, shipyard.shipReleasePosition.rotation, boat.transform));
             ModConsoleLog.Log(Plugin.instance.Info, $"moved boat {boat.name} to {shipyard.name}");
         }
 
-        public static IEnumerator MoveBoatToShipyard(Shipyard shipyard, Transform boat)
-        {
-            boat.GetComponent<PurchasableBoat>().LoadAsPurchased();
-            boat.GetComponent<BoatDamage>().waterLevel = 0;
-            BoatMooringRopes ropes = boat.GetComponent<BoatMooringRopes>();
-            ropes.UnmoorAllRopes();
-            ropes.GetAnchorController().ResetAnchor();
-            yield return new WaitUntil(() => (GameState.wasInSettingsMenu == true));
-            yield return new WaitForSeconds(0.2f);
-
-            boat.transform.SetPositionAndRotation(shipyard.shipReleasePosition.position, shipyard.shipReleasePosition.rotation);
-            boat.GetComponent<Rigidbody>().velocity = Vector3.zero;
-
-        }
 
     }
 }
