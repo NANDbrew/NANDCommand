@@ -13,12 +13,13 @@ namespace NANDCommand
             if (___teleportPlayer)
             {
                 //var targetPos = new Vector3(__instance.transform.position.x, __instance.transform.localPosition.y, __instance.transform.position.z);
-                PlayerMover.MovePlayer(Vector3.up, __instance.transform);
+                PlayerMover.MovePlayer(new Vector3(__instance.transform.position.x, 10, __instance.transform.position.z));
                 ___teleportPlayer = false;
                 Debug.Log("Debug teleporting player to " + ___portName);
 
             }
             return false;
+
         }
 
     }
