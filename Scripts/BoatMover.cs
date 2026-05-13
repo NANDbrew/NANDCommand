@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Crest;
+using System.Collections;
 using UnityEngine;
 
 namespace NANDCommand.Scripts
@@ -11,7 +12,7 @@ namespace NANDCommand.Scripts
             movingBoat = true;
             yield return new WaitUntil(() => (GameState.wasInSettingsMenu == true));
             GameState.recovering = true;
-            boat.GetComponent<PurchasableBoat>().LoadAsPurchased();
+            //boat.GetComponent<PurchasableBoat>().LoadAsPurchased();
             var damage = boat.GetComponent<BoatDamage>();
             BoatMooringRopes ropes = boat.GetComponent<BoatMooringRopes>();
             ropes.UnmoorAllRopes();
@@ -19,6 +20,8 @@ namespace NANDCommand.Scripts
 
             damage.waterLevel = 0;
             damage.enabled = true;
+
+            boat.GetComponent<BoatProbes>().dontUpdateVelocity = true;
 
             yield return new WaitForFixedUpdate();
             yield return new WaitForFixedUpdate();
@@ -45,11 +48,14 @@ namespace NANDCommand.Scripts
             yield return new WaitForEndOfFrame();
 
             boat.transform.rotation = targetRot;
+            boat.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
 
             yield return new WaitForFixedUpdate();
             yield return new WaitForFixedUpdate();
             yield return new WaitForEndOfFrame();
             yield return new WaitForEndOfFrame();
+
+            boat.GetComponent<BoatProbes>().dontUpdateVelocity = false;
 
             GameState.recovering = false;
             movingBoat = false;
