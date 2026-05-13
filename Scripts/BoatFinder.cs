@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace NANDCommand.Scripts
 {
-    internal class BoatFinder
+    public class BoatFinder
     {
         public static Dictionary<string, int> boatNames = new Dictionary<string, int>
         {
