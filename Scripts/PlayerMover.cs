@@ -7,9 +7,9 @@ namespace NANDCommand.Scripts
 {
     public class PlayerMover
     {
-        public static void MovePlayer(Vector3 targetPos, Transform target)
+        public static void MovePlayer(Vector3 targetPos)
         {
-            FloatingOriginManager.instance.StartCoroutine(MovePlayerToGlobePos(targetPos, target));
+            FloatingOriginManager.instance.StartCoroutine(MovePlayerToGlobePos(targetPos, null));
         }
 
         public static IEnumerator MovePlayerToGlobePos(Vector3 targetPos, Transform target)
@@ -28,11 +28,11 @@ namespace NANDCommand.Scripts
             GameState.recovering = true;
             if (target != null)
             {
-                player.position = target.position + Vector3.up * 200;
+                player.position = target.position + (Vector3.up * 200);
             }
             else
             {
-                player.position = targetPos + Vector3.up * 200;
+                player.position = targetPos + (Vector3.up * 200);
             }
             RefsDirectory.instance.oceanRenderer.enabled = false;
 
