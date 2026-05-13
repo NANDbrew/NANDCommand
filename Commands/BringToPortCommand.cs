@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace NANDCommand.Commands
 {
-    public class BringBoatCommand2 : Command
+    public class BringToPortCommand : Command
     {
         public override string Name => "bringToPort";
         public override string[] Aliases => new string[1] { "BTP" };

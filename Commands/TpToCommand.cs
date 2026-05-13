@@ -36,14 +36,14 @@ namespace NANDCommand.Commands
                 if (island.GetComponent<IslandHorizon>().overrideCenter is Transform center)
                 {
                     target = center;
-                    //x = center.position.x;
-                    //z = center.position.z;
+                    x = center.position.x;
+                    z = center.position.z;
                 }
                 else
                 {
                     target = island;
-                    //x = island.position.x;
-                    //z = island.position.z;
+                    x = island.position.x;
+                    z = island.position.z;
                 }
                 y = 100;
             }
@@ -52,8 +52,8 @@ namespace NANDCommand.Commands
                 if (BoatFinder.FindBoat(args[1]) is Transform boat)
                 {
                     target = boat;
-                    //x = target.position.x;
-                    //z = target.position.z;
+                    x = target.position.x;
+                    z = target.position.z;
                     y = 5;
                 }
                 else
@@ -83,10 +83,9 @@ namespace NANDCommand.Commands
                 x = targetPos.x;
                 z = targetPos.z;
                 y = 20;
-                //ModConsoleLog.Log(Plugin.instance.Info, $"moved to {latitude}, {longitude}");
             }
 
-            PlayerMover.MovePlayer(new Vector3(x, y, z), target);
+            PlayerMover.MovePlayer(new Vector3(x, y, z));
 
             //FloatingOriginManager.instance.StartCoroutine(MoveToObject(island, pad));
             ModConsoleLog.Log(Plugin.instance.Info, $"moved player");

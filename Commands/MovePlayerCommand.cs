@@ -24,7 +24,7 @@ namespace NANDCommand.Commands
             Vector3 globeOffset = (Vector3)Traverse.Create(FloatingOriginManager.instance).Field("globeOffset").GetValue();
             Vector3 targetPos = new Vector3(longitude, 0f, latitude) * 9000 + globeOffset;
             targetPos = FloatingOriginManager.instance.RealPosToShiftingPos(targetPos);
-            PlayerMover.MovePlayer(targetPos + Vector3.up * 20, null);
+            PlayerMover.MovePlayer(targetPos + Vector3.up * 20);
 
             ModConsoleLog.Log(Plugin.instance.Info, $"moved to {latitude}, {longitude}");
         }

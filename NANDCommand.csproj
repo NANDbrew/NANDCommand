@@ -94,13 +94,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CheatsPatch.cs" />
+    <Compile Include="Commands\ListCommand.cs" />
+    <Compile Include="Commands\SetOwnedCommand.cs" />
     <Compile Include="Commands\GetWaterCommand.cs" />
     <Compile Include="Commands\SetWaterCommand.cs" />
     <Compile Include="Commands\SetDamageCommand.cs" />
     <Compile Include="Commands\GetDamageCommand.cs" />
-    <Compile Include="Commands\BringBoatCommand3.cs" />
-    <Compile Include="Commands\BringBoatCommand2.cs" />
-    <Compile Include="Commands\BringBoatCommand.cs" />
+    <Compile Include="Commands\BringToMeCommand.cs" />
+    <Compile Include="Commands\BringToPortCommand.cs" />
+    <Compile Include="Commands\BringToShipyardCommand.cs" />
     <Compile Include="Commands\ExportInfoCommand.cs" />
     <Compile Include="Commands\CheatSpeedCommand.cs" />
     <Compile Include="Commands\CookFoodCommand.cs" />
