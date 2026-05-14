@@ -34,7 +34,7 @@ namespace NANDCommand.Commands
             //player.position += (Vector3.up * 20f);
             Plugin.instance.StartCoroutine(DoTheThing(player));
             Plugin.instance.StartCoroutine(BoatMover.IMoveBoat(targetPos, boat.rotation, boat.transform));
-            ModConsoleLog.Log(Plugin.instance.Info, $"moved boat {boat.name}");
+            ModConsoleLog.Log(Plugin.instance.Info, $"moving boat {boat.name}...");
         }
 
         internal static IEnumerator DoTheThing(Transform player)

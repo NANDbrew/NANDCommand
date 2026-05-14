@@ -1,4 +1,5 @@
 ﻿using Crest;
+using SailwindConsole;
 using System.Collections;
 using UnityEngine;
 
@@ -59,6 +60,7 @@ namespace NANDCommand.Scripts
 
             GameState.recovering = false;
             movingBoat = false;
+            ModConsoleLog.Log(Plugin.instance.Info, "moved boat " + boat.name);
         }
     }
 }

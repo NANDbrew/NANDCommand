@@ -25,7 +25,12 @@ namespace NANDCommand.Scripts
             }
             //yield return new WaitForFixedUpdate();
 
+
+            yield return new WaitUntil(() => !GameState.wasInSettingsMenu);
             GameState.recovering = true;
+
+            RefsDirectory.instance.oceanRenderer.enabled = false;
+            //yield return new WaitForSecondsRealtime(1);
             if (target != null)
             {
                 player.position = target.position + (Vector3.up * 200);
@@ -33,14 +38,8 @@ namespace NANDCommand.Scripts
             else
             {
                 player.position = targetPos + (Vector3.up * 200);
-            }
-            RefsDirectory.instance.oceanRenderer.enabled = false;
-
-            yield return new WaitUntil(() => !GameState.wasInSettingsMenu);
-            //yield return new WaitForSecondsRealtime(1);
-            GameState.recovering = false;
-            RefsDirectory.instance.oceanRenderer.enabled = true;
-
+            }            
+            yield return new WaitForSeconds(0.5f);
             //yield return new WaitForSecondsRealtime(1);
             if (target != null)
             {
@@ -48,10 +47,15 @@ namespace NANDCommand.Scripts
             }
             else
             {
-                player.position = new Vector3(player.position.x, targetPos.y, player.position.z);
+                player.Translate(0, targetPos.y - player.position.y, 0);
+                //player.position = new Vector3(player.position.x, targetPos.y, player.position.z);
             }
+            RefsDirectory.instance.oceanRenderer.enabled = true;
+            yield return new WaitForSeconds(1f);
 
+            GameState.recovering = false;
 
+            ModConsoleLog.Log(Plugin.instance.Info, "moved player to " + player.position);
             Debug.Log("teleported player to " + player.position);
         }
     }

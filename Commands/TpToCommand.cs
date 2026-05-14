@@ -88,7 +88,7 @@ namespace NANDCommand.Commands
             PlayerMover.MovePlayer(new Vector3(x, y, z));
 
             //FloatingOriginManager.instance.StartCoroutine(MoveToObject(island, pad));
-            ModConsoleLog.Log(Plugin.instance.Info, $"moved player");
+            ModConsoleLog.Log(Plugin.instance.Info, $"moving player...");
         }
 
     }
