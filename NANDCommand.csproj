@@ -94,6 +94,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CheatsPatch.cs" />
+    <Compile Include="Commands\AddMoneyCommand.cs" />
+    <Compile Include="Commands\CleanBoatCommand.cs" />
     <Compile Include="Commands\ListCommand.cs" />
     <Compile Include="Commands\SetOwnedCommand.cs" />
     <Compile Include="Commands\GetWaterCommand.cs" />
