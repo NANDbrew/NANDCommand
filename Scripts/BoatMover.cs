@@ -17,7 +17,7 @@ namespace NANDCommand.Scripts
             var damage = boat.GetComponent<BoatDamage>();
             BoatMooringRopes ropes = boat.GetComponent<BoatMooringRopes>();
             ropes.UnmoorAllRopes();
-            ropes.GetAnchorController().ResetAnchor();
+            ropes.GetAnchorController()?.ResetAnchor();
 
             damage.waterLevel = 0;
             damage.enabled = true;
