@@ -25,11 +25,9 @@ namespace NANDCommand.Scripts
             }
             //yield return new WaitForFixedUpdate();
 
-
+            
             yield return new WaitUntil(() => !GameState.wasInSettingsMenu);
             GameState.recovering = true;
-
-            RefsDirectory.instance.oceanRenderer.enabled = false;
             //yield return new WaitForSecondsRealtime(1);
             if (target != null)
             {
@@ -38,9 +36,17 @@ namespace NANDCommand.Scripts
             else
             {
                 player.position = targetPos + (Vector3.up * 200);
-            }            
-            yield return new WaitForSeconds(0.5f);
-            //yield return new WaitForSecondsRealtime(1);
+            }
+            //yield return new WaitForSeconds(0.25f);
+            yield return new WaitForFixedUpdate();
+            yield return new WaitForFixedUpdate();
+            yield return new WaitForFixedUpdate();
+            yield return new WaitForEndOfFrame();
+            yield return new WaitForEndOfFrame();
+            RefsDirectory.instance.oceanRenderer.enabled = false;
+            yield return new WaitForEndOfFrame();
+            RefsDirectory.instance.oceanRenderer.enabled = true;
+
             if (target != null)
             {
                 player.position = target.position + targetPos;
@@ -50,8 +56,7 @@ namespace NANDCommand.Scripts
                 player.Translate(0, targetPos.y - player.position.y, 0);
                 //player.position = new Vector3(player.position.x, targetPos.y, player.position.z);
             }
-            RefsDirectory.instance.oceanRenderer.enabled = true;
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.5f);
 
             GameState.recovering = false;
 
