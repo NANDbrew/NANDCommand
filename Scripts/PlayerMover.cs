@@ -7,13 +7,15 @@ namespace NANDCommand.Scripts
 {
     public class PlayerMover
     {
+        static bool moving;
         public static void MovePlayer(Vector3 targetPos)
         {
-            if (GameState.recovering)
+            if (GameState.recovering || moving)
             {
-                ModConsoleLog.Error(Plugin.instance.Info, "Cannot teleport; already teleporting!");
+                ModConsoleLog.Error(Plugin.instance.Info, "Can't teleport; already teleporting!");
                 return;
             }
+            moving = true;
             FloatingOriginManager.instance.StartCoroutine(MovePlayerToGlobePos(targetPos, null));
         }
 
@@ -58,7 +60,7 @@ namespace NANDCommand.Scripts
             yield return new WaitForSeconds(0.5f);
 
             GameState.recovering = false;
-
+            moving = false;
             ModConsoleLog.Log(Plugin.instance.Info, "moved player to " + player.position);
             Debug.Log("teleported player to " + player.position);
         }

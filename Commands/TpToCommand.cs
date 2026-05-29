@@ -80,9 +80,9 @@ namespace NANDCommand.Commands
                 y = 20;
             }
 
-            PlayerMover.MovePlayer(new Vector3(x, y, z));
-
             ModConsoleLog.Log(Plugin.instance.Info, $"moving player...");
+
+            PlayerMover.MovePlayer(new Vector3(x, y, z));
         }
 
     }
