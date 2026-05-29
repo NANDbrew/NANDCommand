@@ -80,3 +80,19 @@ Additional commands for App24's Sailwind Console Mod
 - Alias: setBilge
 ### ToggleDamage
 - enable/disable damage and wear.
+### SetOwned
+- usage: SetOwned [index or vanilla boat name] [true, false]
+- Change the owned status of the targeted boat (or current/last boat if unspecified)
+- If true/false is omitted, assumes true
+### List
+- usage: List \<type (boat, island)>
+- Lists all present objects of the specified types and their IDs
+### AddMoney
+- usage: AddMoney \<region (0, 1, 2)> \<amount>
+- Add or remove money
+- Works like AddGold, but accepts negative values
+### CleanBoat
+- Cleans the targeted boat (or current/last boat if unspecified)
+### SetLevel
+- usage SetLevel \<region(0, 1, 2)> \<level>
+- Set reputation level for a specific region
