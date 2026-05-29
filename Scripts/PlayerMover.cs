@@ -9,26 +9,26 @@ namespace NANDCommand.Scripts
     {
         public static void MovePlayer(Vector3 targetPos)
         {
+            if (GameState.recovering)
+            {
+                ModConsoleLog.Error(Plugin.instance.Info, "Cannot teleport; already teleporting!");
+                return;
+            }
             FloatingOriginManager.instance.StartCoroutine(MovePlayerToGlobePos(targetPos, null));
         }
 
         public static IEnumerator MovePlayerToGlobePos(Vector3 targetPos, Transform target)
         {
             Transform player = Refs.charController.transform;
+
             if (GameState.currentBoat != null)
             {
-                //player.Translate(Vector3.up * 50);
-                
                 GameObject.FindObjectOfType<PlayerEmbarkerNew>().InvokePrivateMethod("PlayerDisembark", null);
-
-                //yield return new WaitForEndOfFrame();
             }
-            //yield return new WaitForFixedUpdate();
-
             
             yield return new WaitUntil(() => !GameState.wasInSettingsMenu);
             GameState.recovering = true;
-            //yield return new WaitForSecondsRealtime(1);
+
             if (target != null)
             {
                 player.position = target.position + (Vector3.up * 200);
@@ -37,7 +37,7 @@ namespace NANDCommand.Scripts
             {
                 player.position = targetPos + (Vector3.up * 200);
             }
-            //yield return new WaitForSeconds(0.25f);
+
             yield return new WaitForFixedUpdate();
             yield return new WaitForFixedUpdate();
             yield return new WaitForFixedUpdate();
@@ -54,7 +54,6 @@ namespace NANDCommand.Scripts
             else
             {
                 player.Translate(0, targetPos.y - player.position.y, 0);
-                //player.position = new Vector3(player.position.x, targetPos.y, player.position.z);
             }
             yield return new WaitForSeconds(0.5f);
 
