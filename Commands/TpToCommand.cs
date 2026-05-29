@@ -19,7 +19,6 @@ namespace NANDCommand.Commands
 
         public override void OnRun(List<string> args)
         {
-            Transform target = null;
             float x = 0;
             float y = 10;
             float z = 0;
@@ -35,13 +34,11 @@ namespace NANDCommand.Commands
                 }
                 if (island.GetComponent<IslandHorizon>().overrideCenter is Transform center)
                 {
-                    target = center;
                     x = center.position.x;
                     z = center.position.z;
                 }
                 else
                 {
-                    target = island;
                     x = island.position.x;
                     z = island.position.z;
                 }
@@ -51,10 +48,9 @@ namespace NANDCommand.Commands
             {
                 if (BoatFinder.FindBoat(args[1]) is Transform boat)
                 {
-                    target = boat;
-                    x = target.position.x;
-                    z = target.position.z;
-                    y = 5;
+                    x = boat.position.x;
+                    z = boat.position.z;
+                    y = boat.position.y;
                 }
                 else
                 {
@@ -79,7 +75,6 @@ namespace NANDCommand.Commands
                 Vector3 globeOffset = (Vector3)Traverse.Create(FloatingOriginManager.instance).Field("globeOffset").GetValue();
                 Vector3 targetPos = new Vector3(longitude, 0f, latitude) * 9000 + globeOffset;
                 targetPos = FloatingOriginManager.instance.RealPosToShiftingPos(targetPos);
-                //PlayerMover.MovePlayer(targetPos + Vector3.up * 20);
                 x = targetPos.x;
                 z = targetPos.z;
                 y = 20;
@@ -87,7 +82,6 @@ namespace NANDCommand.Commands
 
             PlayerMover.MovePlayer(new Vector3(x, y, z));
 
-            //FloatingOriginManager.instance.StartCoroutine(MoveToObject(island, pad));
             ModConsoleLog.Log(Plugin.instance.Info, $"moving player...");
         }
 
