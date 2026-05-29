@@ -23,46 +23,50 @@ namespace NANDCommand.Scripts
         {
             Transform player = Refs.charController.transform;
 
-            if (GameState.currentBoat != null)
-            {
-                GameObject.FindObjectOfType<PlayerEmbarkerNew>().InvokePrivateMethod("PlayerDisembark", null);
-            }
-            
             yield return new WaitUntil(() => !GameState.wasInSettingsMenu);
-            GameState.recovering = true;
-
-            if (target != null)
+            try
             {
-                player.position = target.position + (Vector3.up * 200);
-            }
-            else
-            {
-                player.position = targetPos + (Vector3.up * 200);
-            }
+                GameState.recovering = true;
+                if (GameState.currentBoat != null)
+                {
+                    GameObject.FindObjectOfType<PlayerEmbarkerNew>().InvokePrivateMethod("PlayerDisembark", null);
+                }
 
-            yield return new WaitForFixedUpdate();
-            yield return new WaitForFixedUpdate();
-            yield return new WaitForFixedUpdate();
-            yield return new WaitForEndOfFrame();
-            yield return new WaitForEndOfFrame();
-            RefsDirectory.instance.oceanRenderer.enabled = false;
-            yield return new WaitForEndOfFrame();
-            RefsDirectory.instance.oceanRenderer.enabled = true;
+                if (target != null)
+                {
+                    player.position = target.position + (Vector3.up * 200);
+                }
+                else
+                {
+                    player.position = targetPos + (Vector3.up * 200);
+                }
 
-            if (target != null)
-            {
-                player.position = target.position + targetPos;
-            }
-            else
-            {
-                player.Translate(0, targetPos.y - player.position.y, 0);
-            }
-            yield return new WaitForSeconds(0.5f);
+                yield return new WaitForFixedUpdate();
+                yield return new WaitForFixedUpdate();
+                yield return new WaitForFixedUpdate();
+                yield return new WaitForEndOfFrame();
+                yield return new WaitForEndOfFrame();
+                RefsDirectory.instance.oceanRenderer.enabled = false;
+                yield return new WaitForEndOfFrame();
+                RefsDirectory.instance.oceanRenderer.enabled = true;
 
-            GameState.recovering = false;
-            moving = false;
-            ModConsoleLog.Log(Plugin.instance.Info, "moved player to " + player.position);
-            Debug.Log("teleported player to " + player.position);
+                if (target != null)
+                {
+                    player.position = target.position + targetPos;
+                }
+                else
+                {
+                    player.Translate(0, targetPos.y - player.position.y, 0);
+                }
+                yield return new WaitForSeconds(0.5f);
+            }
+            finally
+            {
+                GameState.recovering = false;
+                moving = false;
+                ModConsoleLog.Log(Plugin.instance.Info, "moved player to " + player.position);
+                Debug.Log("teleported player to " + player.position);
+            }
         }
     }
 }

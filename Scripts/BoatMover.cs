@@ -12,55 +12,61 @@ namespace NANDCommand.Scripts
         {
             movingBoat = true;
             yield return new WaitUntil(() => (GameState.wasInSettingsMenu == true));
-            GameState.recovering = true;
-            //boat.GetComponent<PurchasableBoat>().LoadAsPurchased();
-            var damage = boat.GetComponent<BoatDamage>();
-            BoatMooringRopes ropes = boat.GetComponent<BoatMooringRopes>();
-            ropes.UnmoorAllRopes();
-            ropes.GetAnchorController()?.ResetAnchor();
 
-            damage.waterLevel = 0;
-            damage.enabled = true;
-
-            boat.GetComponent<BoatProbes>().dontUpdateVelocity = true;
-
-            yield return new WaitForFixedUpdate();
-            yield return new WaitForFixedUpdate();
-            yield return new WaitForEndOfFrame();
-            yield return new WaitForEndOfFrame();
-
-            boat.transform.position = targetPos;
-            boat.GetComponent<Rigidbody>().velocity = Vector3.zero;
-
-            yield return new WaitForFixedUpdate();
-            yield return new WaitForFixedUpdate();
-            yield return new WaitForEndOfFrame();
-            yield return new WaitForEndOfFrame();
-
-            if (damage.sunk)
+            try
             {
-                boat.transform.rotation = damage.GetSinkRotation();
-                boat.GetComponent<BoatLocalItems>().SetItemsLoaded(state: false);
+                GameState.recovering = true;
+                //boat.GetComponent<PurchasableBoat>().LoadAsPurchased();
+                var damage = boat.GetComponent<BoatDamage>();
+                BoatMooringRopes ropes = boat.GetComponent<BoatMooringRopes>();
+                ropes.UnmoorAllRopes();
+                ropes.GetAnchorController()?.ResetAnchor();
+
+                damage.waterLevel = 0;
+                damage.enabled = true;
+
+                boat.GetComponent<BoatProbes>().dontUpdateVelocity = true;
+
+                yield return new WaitForFixedUpdate();
+                yield return new WaitForFixedUpdate();
+                yield return new WaitForEndOfFrame();
+                yield return new WaitForEndOfFrame();
+
+                boat.transform.position = targetPos;
+                boat.GetComponent<Rigidbody>().velocity = Vector3.zero;
+
+                yield return new WaitForFixedUpdate();
+                yield return new WaitForFixedUpdate();
+                yield return new WaitForEndOfFrame();
+                yield return new WaitForEndOfFrame();
+
+                if (damage.sunk)
+                {
+                    boat.transform.rotation = damage.GetSinkRotation();
+                    boat.GetComponent<BoatLocalItems>().SetItemsLoaded(state: false);
+                }
+
+                yield return new WaitForFixedUpdate();
+                yield return new WaitForFixedUpdate();
+                yield return new WaitForEndOfFrame();
+                yield return new WaitForEndOfFrame();
+
+                boat.transform.rotation = targetRot;
+                boat.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+
+                yield return new WaitForFixedUpdate();
+                yield return new WaitForFixedUpdate();
+                yield return new WaitForEndOfFrame();
+                yield return new WaitForEndOfFrame();
+
+                boat.GetComponent<BoatProbes>().dontUpdateVelocity = false;
             }
-
-            yield return new WaitForFixedUpdate();
-            yield return new WaitForFixedUpdate();
-            yield return new WaitForEndOfFrame();
-            yield return new WaitForEndOfFrame();
-
-            boat.transform.rotation = targetRot;
-            boat.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
-
-            yield return new WaitForFixedUpdate();
-            yield return new WaitForFixedUpdate();
-            yield return new WaitForEndOfFrame();
-            yield return new WaitForEndOfFrame();
-
-            boat.GetComponent<BoatProbes>().dontUpdateVelocity = false;
-
-            GameState.recovering = false;
-            movingBoat = false;
-            ModConsoleLog.Log(Plugin.instance.Info, "moved boat " + boat.name);
+            finally
+            {
+                GameState.recovering = false;
+                movingBoat = false;
+                ModConsoleLog.Log(Plugin.instance.Info, "moved boat " + boat.name);
+            }
         }
     }
 }
