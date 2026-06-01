@@ -85,8 +85,9 @@ namespace NANDCommand.Commands
             }
 
             float distance = Vector3.Distance(new Vector3(x, 0, z), new Vector3(Refs.observerMirror.transform.position.x, 0, Refs.observerMirror.transform.position.z));
-
-            ModConsoleLog.Log(Plugin.instance.Info, $"distance to {targetName} = {distance / 100} miles, or {distance / 9000} degrees");
+            float num2 = 0.514444f / Sun.sun.initialTimescale;
+            float f = distance / num2;
+            ModConsoleLog.Log(Plugin.instance.Info, $"distance to {targetName} = {f} miles, or {distance / 9000} degrees");
         }
 
     }
