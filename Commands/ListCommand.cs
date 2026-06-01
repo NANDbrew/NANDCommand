@@ -40,6 +40,17 @@ namespace NANDCommand.Commands
                     }
                 }
             }
+            else if (args[0].ToLower() == "ports")
+            {
+                text += "found ports:";
+                for (int i = 0; i < Port.ports.Length; i++)
+                {
+                    if (Port.ports[i] != null)
+                    {
+                        text += "\n" + Port.ports[i].GetPortName();
+                    }
+                }
+            }
             ModConsoleLog.Log(Plugin.instance.Info, text);
         }
 
