@@ -170,7 +170,7 @@ namespace NANDCommand.Commands
         }
         public static string GetItemInfo()
         {
-            string text = "index,name,mass,value" + Environment.NewLine;
+            string text = "index,prefab name,item name,mass,value,description,category" + Environment.NewLine;
             string separator = ",";
             for (int i = 1; i < PrefabsDirectory.instance.directory.Length; i++)
             {
@@ -180,9 +180,12 @@ namespace NANDCommand.Commands
                     if (obj.GetComponent<ShipItem>() is ShipItem item)
                     {
                         text += i + separator;
+                        text += item.gameObject.name + separator;
                         text += item.name + separator;
                         text += item.mass + separator;
-                        text += item.value;
+                        text += item.value + separator;
+                        text += item.description + separator;
+                        text += item.category.ToString();
                         text += Environment.NewLine;
                     }
                 }
