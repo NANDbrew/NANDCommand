@@ -10,7 +10,7 @@ namespace NANDCommand.Commands
         public override string Name => "list";
         //public override string[] Aliases => new string[1] { "" };
 
-        public override string Usage => "<type(boats, islands)>";
+        public override string Usage => "<type(boats, islands, items)>";
         public override string Description => "List all objects of the specified type";
         public override int MinArgs => 1;
 
@@ -48,6 +48,17 @@ namespace NANDCommand.Commands
                     if (Port.ports[i] != null)
                     {
                         text += "\n" + Port.ports[i].GetPortName();
+                    }
+                }
+            }
+            else if (args[0].ToLower() == "items")
+            {
+                text += "found items:";
+                for (int i = 0; i < PrefabsDirectory.instance.directory.Length; i++)
+                {
+                    if (PrefabsDirectory.instance.directory[i] != null)
+                    {
+                        text += "\n" + PrefabsDirectory.instance.directory[i].name;
                     }
                 }
             }
