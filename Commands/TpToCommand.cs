@@ -48,9 +48,10 @@ namespace NANDCommand.Commands
             {
                 if (BoatFinder.FindBoat(args[1]) is Transform boat)
                 {
-                    x = boat.position.x;
-                    z = boat.position.z;
-                    y = boat.position.y;
+                    var transPos = boat.TransformPoint(0, 20, 0);
+                    x = transPos.x;//oat.position.x;
+                    y = transPos.y;//oat.position.z;
+                    z = transPos.z;//boat.position.y + 10;
                 }
                 else
                 {
