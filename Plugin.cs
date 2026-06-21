@@ -52,7 +52,7 @@ namespace NANDCommand
             ModConsole.AddCommand(new CleanBoatCommand());
             ModConsole.AddCommand(new SetLevelCommand());
             ModConsole.AddCommand(new GetHeadingCommand());
-
+            ModConsole.AddCommand(new SetWalkSpeedCommand());
 
             patchPortTeleport = Config.Bind("Settings", "Patch Port teleport", true, new ConfigDescription("Patch SailwindConsole's Teleport command so it puts you on the ground"));
 

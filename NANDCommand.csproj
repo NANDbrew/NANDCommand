@@ -101,6 +101,7 @@
     <Compile Include="Commands\ListCommand.cs" />
     <Compile Include="Commands\SetOwnedCommand.cs" />
     <Compile Include="Commands\GetWaterCommand.cs" />
+    <Compile Include="Commands\SetWalkSpeedCommand.cs" />
     <Compile Include="Commands\SetWaterCommand.cs" />
     <Compile Include="Commands\SetDamageCommand.cs" />
     <Compile Include="Commands\GetDamageCommand.cs" />
