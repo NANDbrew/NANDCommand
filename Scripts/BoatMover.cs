@@ -20,7 +20,13 @@ namespace NANDCommand.Scripts
                 var damage = boat.GetComponent<BoatDamage>();
                 BoatMooringRopes ropes = boat.GetComponent<BoatMooringRopes>();
                 ropes.UnmoorAllRopes();
-                ropes.GetAnchorController()?.ResetAnchor();
+                var anchor = ropes.GetAnchorController()?.joint.gameObject;
+                Vector3 anchorPos = Vector3.zero;
+                if (anchor) 
+                {
+                    ropes.GetAnchorController().ResetAnchor();
+                    anchorPos = anchor.transform.position - boat.position;
+                }
 
                 damage.waterLevel = 0;
                 damage.enabled = true;
@@ -34,6 +40,12 @@ namespace NANDCommand.Scripts
 
                 boat.transform.position = targetPos;
                 boat.GetComponent<Rigidbody>().velocity = Vector3.zero;
+
+                if (anchor)
+                {
+                    anchor.transform.position = targetPos + anchorPos;
+                    anchor.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                }
 
                 yield return new WaitForFixedUpdate();
                 yield return new WaitForFixedUpdate();
