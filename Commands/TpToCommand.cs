@@ -13,7 +13,7 @@ namespace NANDCommand.Commands
         public override string Name => "TeleportTo";
         public override string[] Aliases => new string[1] { "TPTo" };
 
-        public override string Usage => "<target type (island, coords, boat)> <target (island index, lat long, boat index or vanilla boat name)>";
+        public override string Usage => "<target type (island, coords, boat, object)> <target (island index, lat long, boat index or vanilla boat name)>";
         public override string Description => "Teleport to scenery, coords, or boat";
         public override int MinArgs => 2;
 
@@ -80,7 +80,21 @@ namespace NANDCommand.Commands
                 z = targetPos.z;
                 y = 20;
             }
+            else if (args[0].ToLower() == "object")
+            {
+                if (SaveLoadManager.instance.GetCurrentObjects()[Convert.ToInt32(args[1])] is SaveableObject obj)
+                {
+                    x = obj.transform.position.x;
+                    y = obj.transform.position.y;
+                    z = obj.transform.position.z;
 
+                }
+                else
+                {
+                    ModConsoleLog.Error(Plugin.instance.Info, "couldn't find target");
+                    return;
+                }
+            }
             ModConsoleLog.Log(Plugin.instance.Info, $"moving player...");
 
             PlayerMover.MovePlayer(new Vector3(x, y, z));
