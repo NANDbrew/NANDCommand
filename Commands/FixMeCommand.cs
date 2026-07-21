@@ -8,7 +8,7 @@ namespace NANDCommand.Commands
     public class FixMeCommand : Command
     {
         public override string Name => "FixMe";
-        //public override string[] Aliases => new string[1] { "" };
+        public override string[] Aliases => new string[1] { "UnstuckMe" };
 
         public override string Usage => "";
         public override string Description => "Unstuck yourself";
@@ -16,7 +16,7 @@ namespace NANDCommand.Commands
 
         public override void OnRun(List<string> args)
         {
-            Refs.charController.transform.Translate(Vector3.up);
+            Scripts.PlayerMover.MovePlayer(Refs.charController.transform.position + (Vector3.up * 8));
 
             ModConsoleLog.Log(Plugin.instance.Info, $"moved player");
         }
