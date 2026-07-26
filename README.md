@@ -3,7 +3,7 @@ Additional commands for App24's Sailwind Console Mod
 ## Settings
 - Patch Port teleport
   - fix SailwindConsole's Teleport command so it puts you on the ground
-### How to use this ReadMe
+## How to use this ReadMe
 - less than/greater than brackets '<' and '>' mean the argument is required
 - parentheses '(' and ')' mean the words inside them are interchangable options e.g. "island" or "boat"
 - square brackets '[' and ']' mean an argument is optional e.g. boat index for teleports; if it's not supplied, a default will be assumed
