@@ -115,11 +115,11 @@ Additional commands for App24's Sailwind Console Mod
 ### SpawnItem
 - usage: SpawnItem \<int id>
 - item IDs can be seen with the List command
-## GetHeading
+### GetHeading
 - usage: GetHeading <target type (island, boat, port)> <target (island index, boat index or vanilla boat name, port name)>
 - returns the degree heading from player to target
 - alias: getAngle
-## SetWalkSpeed
+### SetWalkSpeed
 - usage: SetWalkSpeed \<float speed>
 - Set player's walking speed multiplier. 1 is default
 - aliases: "setMoveSpeed", "sws", "sms"
