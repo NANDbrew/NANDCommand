@@ -57,6 +57,20 @@ namespace NANDCommand.Commands
                     return;
                 }
             }
+            else if (args[0].ToLower() == "object")
+            {
+                if (int.TryParse(args[1], out int index) && SaveLoadManager.instance.GetCurrentObjects()[index] is SaveableObject target)
+                {
+                    x = target.transform.position.x;
+                    z = target.transform.position.z;
+                    targetName = target.gameObject.name;
+                }
+                else
+                {
+                    ModConsoleLog.Error(Plugin.instance.Info, "couldn't find target");
+                    return;
+                }
+            }
             else if (args[0].ToLower() == "port")
             {
                 string text = string.Join(" ", args.GetRange(1, args.Count - 1));
