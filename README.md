@@ -12,6 +12,7 @@ Additional commands for App24's Sailwind Console Mod
 - flags are an optional argument, used to change the behavior of commands that accept them
 - "vanilla boat name" means the community's short names: cog, dhow, sanbuq, etc
 - port names are the full name seen in the mission list, complete with spaces
+- options in quotes are "pick one" options and are used without the quotes
 ## Commands
 ### BringToShipyard
 - usage: BringToShipyard [boat name or index]
