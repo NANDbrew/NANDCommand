@@ -19,7 +19,7 @@ namespace NANDCommand.Commands
             string text = "";
             if (args[0].ToLower() == "boats")
             {
-                text += "found boats:";
+                text = "found boats:";
                 for (int i = 0; i < SaveLoadManager.instance.GetCurrentObjects().Length; i++)
                 {
                     var boat = SaveLoadManager.instance.GetCurrentObjects()[i];
@@ -29,9 +29,21 @@ namespace NANDCommand.Commands
                     }
                 }
             }
+            if (args[0].ToLower() == "objects")
+            {
+                text = "found objects:";
+                for (int i = 0; i < SaveLoadManager.instance.GetCurrentObjects().Length; i++)
+                {
+                    var obj = SaveLoadManager.instance.GetCurrentObjects()[i];
+                    if (obj != null)
+                    {
+                        text += $"\nindex {i}: {obj.name}";
+                    }
+                }
+            }
             else if (args[0].ToLower() == "islands")
             {
-                text += "found islands:";
+                text = "found islands:";
                 for (int i = 0; i < Refs.islands.Length; i++)
                 {
                     if (Refs.islands[i] != null)
@@ -42,7 +54,7 @@ namespace NANDCommand.Commands
             }
             else if (args[0].ToLower() == "ports")
             {
-                text += "found ports:";
+                text = "found ports:";
                 for (int i = 0; i < Port.ports.Length; i++)
                 {
                     if (Port.ports[i] != null)
@@ -53,7 +65,7 @@ namespace NANDCommand.Commands
             }
             else if (args[0].ToLower() == "items")
             {
-                text += "found items:";
+                text = "found items:";
                 for (int i = 0; i < PrefabsDirectory.instance.directory.Length; i++)
                 {
                     if (PrefabsDirectory.instance.directory[i] != null)
@@ -61,6 +73,10 @@ namespace NANDCommand.Commands
                         text += "\n" + PrefabsDirectory.instance.directory[i].name;
                     }
                 }
+            }
+            else
+            {
+                text = "unknown object type"; 
             }
             ModConsoleLog.Log(Plugin.instance.Info, text);
         }
