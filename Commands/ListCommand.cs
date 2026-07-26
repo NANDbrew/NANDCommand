@@ -10,7 +10,7 @@ namespace NANDCommand.Commands
         public override string Name => "list";
         //public override string[] Aliases => new string[1] { "" };
 
-        public override string Usage => "<type(boats, islands, items)>";
+        public override string Usage => "<type(boats, islands, items, ports, objects)>";
         public override string Description => "List all objects of the specified type";
         public override int MinArgs => 1;
 
@@ -66,13 +66,19 @@ namespace NANDCommand.Commands
             else if (args[0].ToLower() == "items")
             {
                 text = "found items:";
-                for (int i = 0; i < PrefabsDirectory.instance.directory.Length; i++)
+                int i = 0;
+                try
                 {
-                    if (PrefabsDirectory.instance.directory[i] != null)
+                    while (i < PrefabsDirectory.instance.directory.Length)
                     {
-                        text += "\n" + PrefabsDirectory.instance.directory[i].name;
+                        if (PrefabsDirectory.instance.directory[i] != null)
+                        {
+                            text += $"\nindex {i}: {PrefabsDirectory.instance.directory[i].name}";
+                        }
+                        i++;
                     }
                 }
+                catch { ModConsoleLog.Error(Plugin.instance.Info, "Something went wrong at index " + i); }
             }
             else
             {
