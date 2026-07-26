@@ -19,19 +19,19 @@ Additional commands for App24's Sailwind Console Mod
 - boat names for vanilla boats, others must be referenced by index
 - teleport a boat (or current/last boat if unspecified) to the nearest shipyard (if loaded). Will set boat as owned
 - alias: BTS
-- example: BrigToShipyard brig
+- example: `BrigToShipyard brig`
 ### BringToPort 
 - usage: BringToPort [boat name or index]
 - boat names for vanilla boats, others must be referenced by index
 - teleport a boat (or current/last boat if unspecified) to the nearest recovery port (if loaded). Will set boat as owned
 - alias: BTP
-- example using HappyBayBoat mod: BringToPort 144
-- example vanilla boat: BringToPort junk
+- example using HappyBayBoat mod: `BringToPort 144`
+- example vanilla boat: `BringToPort junk`
 ### MoveBoat
 - usage: MoveBoat \<float lat> \<float long> [boat name or index] [flag]
 - Teleport a boat (or current/last boat if unspecified) to lat/long.
 - flags: -y (also teleport all owned boats within 100m of the primary boat)
-- example: MoveBoat 32 4.5 sanbuq
+- example: `MoveBoat 32 4.5 sanbuq`
 ### TeleportTo
 - usage: TeleportTo \<target type ("island", "boat", "object", "port", "coords")> \<target (island index, port name, boat index or boat name, lat long)>
 - boat names for vanilla boats, others must be referenced by index
@@ -39,8 +39,8 @@ Additional commands for App24's Sailwind Console Mod
 - when using "object", only accepts index, not name.
   - can target boats, anchors, mooring ropes, storms
 - alias: TpTo
-- example: TeleportTo port fort aestrin
-- example: TeleportTo coords 31 -5
+- example: `TeleportTo port fort aestrin`
+- example: `TeleportTo coords 31 -5`
 ### SetTimeScale
 - usage: SetTimeScale [float multiplier] [flag]
 - sets day/night time scale.
@@ -48,9 +48,9 @@ Additional commands for App24's Sailwind Console Mod
 - flags:
   - \-r (treat multiplier as the ratio of game time to real time)
   - \-p (treat multiplier as a percentage of default)
-- example: setTimeScale 20 -r
+- example: `setTimeScale 20 -r`
   - result: 20 game minutes per real world minute
-- example: setTimeScale 200 -p
+- example: `setTimeScale 200 -p`
   - result: game time moves twice normal speed aka 57.6 game minutes per real minute
 ### ExportInfo
 - usage: ExportInfo \<item type ("parts", "boats", "food", "items", "islands")> [scene index or vanilla boat name]
@@ -72,13 +72,13 @@ Additional commands for App24's Sailwind Console Mod
 ### SetWeather
 - usage: SetWeather <weather ("clear", "cloudy", "rain", "storm")> [seconds]
 - force the weather for the specified seconds, or 10 if unspecified
-- example: SetWeather clear 30
+- example: `SetWeather clear 30`
 ### GetDistance
 - usage: GetDistance <target type ("island", "boat", "port")> <target (island index, boat index or vanilla boat name, port name)>
 - gets the distance from the player to the specified target
 - alias: GetDist
-- example 1 targeting Gold Rock City: getdist island 1
-- example 2 targeting Gold Rock City: getdist port gold rock city
+- example 1 targeting Gold Rock City: `getdist island 1`
+- example 2 targeting Gold Rock City: `getdist port gold rock city`
 ### FixMe
 - usage: FixMe [distance]
 - teleports the player upward to hopefully get out of sticky situations
@@ -109,39 +109,39 @@ Additional commands for App24's Sailwind Console Mod
 - usage: SetWater [index or vanilla boat name] \<water level>
 - set the bilge water level of the targeted boat (or current/last boat if unspecified). Accepts "units" or percentage ("setWater 20" will assume units, "setWater 20%" will be percentage).
 - alias: setBilge
-- example percent: setWater kakam 20%
-- example units: setWater dhow 60
+- example percent: `setWater kakam 20%`
+- example units: `setWater dhow 60`
 ### ToggleDamage
 - enable/disable damage and wear globally
 ### SetOwned
 - usage: SetOwned [index or vanilla boat name] [true, false]
 - change the owned status of the targeted boat (or current/last boat if unspecified)
 - if true/false is unspecified, assumes true
-- example: setowned jong
+- example: `setowned jong`
 ### List
 - usage: List \<type ("boats", "islands", "items", "ports")>
 - lists all present objects of the specified types and their IDs
-- example: List boats
+- example: `List boats`
 ### AddMoney
 - usage: AddMoney \<region (0, 1, 2)> \<amount>
 - add or remove money
 - works like AddGold, but can also accept negative numbers
-- example subtracting Crowns: AddMoney 2 -50
+- example subtracting Crowns: `AddMoney 2 -50`
 ### CleanBoat
 - cleans the targeted boat (or current/last boat if unspecified)
 ### SetLevel
 - usage SetLevel \<region(0, 1, 2)> \<level>
 - set reputation level for a specific region
-- example level ten for Emerald: SetLevel 1 10
+- example level ten for Emerald: `SetLevel 1 10`
 ### SpawnItem
 - usage: SpawnItem \<int id>
 - item IDs can be seen with the List command
-- example spawning a lantern hook: SpawnItem 79
+- example spawning a lantern hook: `SpawnItem 79`
 ### GetHeading
 - usage: GetHeading <target type (island, boat, port)> <target (island index, boat index or vanilla boat name, port name)>
 - returns the degree heading from player to target
 - alias: getAngle
-- example: GetHeading boat sanbuq
+- example: `GetHeading boat sanbuq`
 ### SetWalkSpeed
 - usage: SetWalkSpeed \<float speed>
 - Set player's walking speed multiplier. 1 is default
