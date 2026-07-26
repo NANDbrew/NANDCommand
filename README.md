@@ -3,8 +3,17 @@ Additional commands for App24's Sailwind Console Mod
 ## Settings
 - Patch Port teleport
   - fix SailwindConsole's Teleport command so it puts you on the ground
+### How to use this ReadMe
+- less than/greater than brackets '<' and '>' mean the argument is required
+- parentheses '(' and ')' mean the words inside them are interchangable options e.g. "island" or "boat"
+- square brackets '[' and ']' mean an argument is optional e.g. boat index for teleports; if it's not supplied, a default will be assumed
+- "int" means it requires a whole number e.g. 10, not 10.4
+- "float" means it can handle more precision
+- flags are an optional argument, used to change the behavior of commands that accept them
+- "vanilla boat name" means the community's short names: cog, dhow, sanbuq, etc
+- port names are the full name seen in the mission list, complete with spaces
 ## Commands
-### BringToShipyard 
+### BringToShipyard
 - usage: BringToShipyard [boat name or index]
 - boat names for vanilla boats, others must be referenced by index
 - teleport a boat (or current/last boat if unspecified) to the nearest shipyard (if loaded). Will set boat as owned
@@ -22,7 +31,7 @@ Additional commands for App24's Sailwind Console Mod
 - usage: MovePlayer \<lat> \<long>
 - teleport to globe coords
 ### TeleportTo
-- usage: TeleportTo \<target type ("island", "boat", "object")> \<target (island index, boat index or boat name)>
+- usage: TeleportTo \<target type ("island", "boat", "object", "port")> \<target (island index, port name, boat index or boat name)>
 - boat names for vanilla boats, others must be referenced by index
 - useful for teleporting to islands with no port
 - when using "object", only accepts index, not name.
@@ -60,11 +69,11 @@ Additional commands for App24's Sailwind Console Mod
 - alias: GetDist
 ### FixMe
 - usage: FixMe [distance]
-- if distance is omitted, defaults to 5m
 - teleports the player upward to hopefully get out of sticky situations
+- if distance is omitted, defaults to 5m
 ### BringToMe
 - usage: BringToMe [index or vanilla boat name]
-- Teleport a boat (or current/last boat if unspecified) to you. Will set boat as owned. DO NOT USE WHILE ON LAND!
+- teleport a boat (or current/last boat if unspecified) to you. Will set boat as owned. DO NOT USE WHILE ON LAND!
 - alias: BTM
 ### CookFood
 - cook currently held food item
@@ -82,23 +91,23 @@ Additional commands for App24's Sailwind Console Mod
 - alias: getBilge
 ### SetWater
 - usage: SetWater [index or vanilla boat name] \<water level>
-- Set the bilge water level of the targeted boat (or current/last boat if unspecified). Accepts "units" or percentage ("setWater 20" will assume units, "setWater 20%" will be percentage).
-- Alias: setBilge
+- set the bilge water level of the targeted boat (or current/last boat if unspecified). Accepts "units" or percentage ("setWater 20" will assume units, "setWater 20%" will be percentage).
+- alias: setBilge
 ### ToggleDamage
 - enable/disable damage and wear.
 ### SetOwned
 - usage: SetOwned [index or vanilla boat name] [true, false]
-- Change the owned status of the targeted boat (or current/last boat if unspecified)
-- If true/false is omitted, assumes true
+- change the owned status of the targeted boat (or current/last boat if unspecified)
+- if true/false is omitted, assumes true
 ### List
 - usage: List \<type (boat, island)>
-- Lists all present objects of the specified types and their IDs
+- lists all present objects of the specified types and their IDs
 ### AddMoney
 - usage: AddMoney \<region (0, 1, 2)> \<amount>
-- Add or remove money
-- Works like AddGold, but accepts negative values
+- add or remove money
+- works like AddGold, but can also accept negative numbers
 ### CleanBoat
-- Cleans the targeted boat (or current/last boat if unspecified)
+- cleans the targeted boat (or current/last boat if unspecified)
 ### SetLevel
 - usage SetLevel \<region(0, 1, 2)> \<level>
 - Set reputation level for a specific region
@@ -108,7 +117,7 @@ Additional commands for App24's Sailwind Console Mod
 ## GetHeading
 - usage: GetHeading <target type (island, boat, port)> <target (island index, boat index or vanilla boat name, port name)>
 - returns the degree heading from player to target
-- Alias: getAngle
+- alias: getAngle
 ## SetWalkSpeed
 - usage: SetWalkSpeed \<float speed>
 - Set player's walking speed multiplier. 1 is default
