@@ -4,48 +4,52 @@ Additional commands for App24's Sailwind Console Mod
 - Patch Port teleport
   - fix SailwindConsole's Teleport command so it puts you on the ground
 ## Commands
-### Bring To Shipyard 
+### BringToShipyard 
 - usage: BringToShipyard [boat name or index]
 - boat names for vanilla boats, others must be referenced by index
 - teleport a boat (or current/last boat if unspecified) to the nearest shipyard (if loaded). Will set boat as owned
 - alias: BTS
-### Bring To Port 
+### BringToPort 
 - usage: BringToPort [boat name or index]
 - boat names for vanilla boats, others must be referenced by index
 - teleport a boat (or current/last boat if unspecified) to the nearest recovery port (if loaded). Will set boat as owned
 - alias: BTP
-### Move Boat
+### MoveBoat
 - usage: MoveBoat \<lat> \<long> [boat name or index] [flag]
 - Teleport a boat (or current/last boat if unspecified) to lat/long.
 - flags: -y (also teleport all owned boats within 100m of the primary boat)
-### Move Player
+### MovePlayer
 - usage: MovePlayer \<lat> \<long>
 - teleport to globe coords
-### Teleport To
-- usage: TeleportTo \<target type ("island", "boat")> \<target (island index, boat index or boat name)>
+### TeleportTo
+- usage: TeleportTo \<target type ("island", "boat", "object")> \<target (island index, boat index or boat name)>
 - boat names for vanilla boats, others must be referenced by index
 - useful for teleporting to islands with no port
+- when using "object", only accepts index, not name.
+  - can target boats, anchors, mooring ropes, storms
 - alias: TpTo
-### Set Time Scale
+### SetTimeScale
 - usage: SetTimeScale [multiplier] [flag]
 - sets day/night time scale.
 - if unspecified, resets to default (0.008 aka 28.8)
 - flags:
   - \-r (treat multiplier as the ratio of game time to real)
-  - \-p (treat multiplier as a percentage of default) *upcoming*
-### Export Info
+  - \-p (treat multiplier as a percentage of default)
+### ExportInfo
 - usage: ExportInfo \<item type ("parts", "boats", "food")> [scene index or vanilla boat name]
 - exports item info and indexes
   - "parts" exports boat part info. Expects a boat (if unspecified it will do all of them)
   - "objects" exports all occupied indexes in `SaveLoadManager.currentObjects` (boats, mooring ropes, npc boats, storms)
   - "food" exports food items info (name, mass, energy, etc.)
   - "items" exports all items info (name, mass, value)
-### Cheat Speed
+  - "islands" exports index, name, lat, long, port index, port name, has carrier, has currency exchange, main import, main export
+  - "boats" exports index, object name, price, base mass, water capacity, water intake rate, water drain rate, durability days, impact multiplier, wear steepness, impact threshold
+### CheatSpeed
 - usage: CheatSpeed [speed]
 - if speed is unspecified, resets to 0
 - if set to a positive number, enables holding W/S while using a boat's steering wheel to push forward/back.
 ### SetWindKnots
-- usage: SetWindKnots <wind speed (int knots)>
+- usage: SetWindKnots \<knots>
 - sets the wind speed to the specified speed
 ### SetWeather
 - usage: SetWeather <weather ("clear", "cloudy", "rain", "storm")> [seconds]
@@ -55,7 +59,9 @@ Additional commands for App24's Sailwind Console Mod
 - gets the distance from the player to the specified target
 - alias: GetDist
 ### FixMe
-- teleports the player 1m upward
+- usage: FixMe [distance]
+- if distance is omitted, defaults to 5m
+- teleports the player upward to hopefully get out of sticky situations
 ### BringToMe
 - usage: BringToMe [index or vanilla boat name]
 - Teleport a boat (or current/last boat if unspecified) to you. Will set boat as owned. DO NOT USE WHILE ON LAND!
@@ -96,3 +102,17 @@ Additional commands for App24's Sailwind Console Mod
 ### SetLevel
 - usage SetLevel \<region(0, 1, 2)> \<level>
 - Set reputation level for a specific region
+### SpawnItem
+- usage: SpawnItem \<int id>
+- item IDs can be seen with the List command
+## GetHeading
+- usage: GetHeading <target type (island, boat, port)> <target (island index, boat index or vanilla boat name, port name)>
+- returns the degree heading from player to target
+- Alias: getAngle
+## SetWalkSpeed
+- usage: SetWalkSpeed \<float speed>
+- Set player's walking speed multiplier. 1 is default
+- aliases: "setMoveSpeed", "sws", "sms"
+### List
+- usage: List <type("boats", "islands", "items")>
+- returns the names and IDs of all objects of the specified type
