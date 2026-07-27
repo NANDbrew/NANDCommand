@@ -10,8 +10,8 @@ namespace NANDCommand.Commands
         public override string Name => "list";
         //public override string[] Aliases => new string[1] { "" };
 
-        public override string Usage => "<type(boats, islands, items, ports, objects)>";
-        public override string Description => "List all objects of the specified type";
+        public override string Usage => "<type (boats, islands, items, ports, objects)>";
+        public override string Description => "List objects of the specified type";
         public override int MinArgs => 1;
 
         public override void OnRun(List<string> args)
@@ -29,7 +29,7 @@ namespace NANDCommand.Commands
                     }
                 }
             }
-            if (args[0].ToLower() == "objects")
+            else if (args[0].ToLower() == "objects")
             {
                 text = "found objects:";
                 for (int i = 0; i < SaveLoadManager.instance.GetCurrentObjects().Length; i++)
@@ -59,26 +59,20 @@ namespace NANDCommand.Commands
                 {
                     if (Port.ports[i] != null)
                     {
-                        text += "\n" + Port.ports[i].GetPortName();
+                        text += $"\nindex: {Port.ports[i].GetPortName()}";
                     }
                 }
             }
             else if (args[0].ToLower() == "items")
             {
                 text = "found items:";
-                int i = 0;
-                try
+                for (int i = 0; i < PrefabsDirectory.instance.directory.Length; i++)
                 {
-                    while (i < PrefabsDirectory.instance.directory.Length)
+                    if (PrefabsDirectory.instance.directory[i] != null)
                     {
-                        if (PrefabsDirectory.instance.directory[i] != null)
-                        {
-                            text += $"\nindex {i}: {PrefabsDirectory.instance.directory[i].name}";
-                        }
-                        i++;
+                        text += $"\nindex {i}: {PrefabsDirectory.instance.directory[i].name}";
                     }
                 }
-                catch { ModConsoleLog.Error(Plugin.instance.Info, "Something went wrong at index " + i); }
             }
             else
             {
