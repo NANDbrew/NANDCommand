@@ -59,7 +59,7 @@ namespace NANDCommand.Commands
                 {
                     if (Port.ports[i] != null)
                     {
-                        text += $"\nindex: {Port.ports[i].GetPortName()}";
+                        text += $"\nport {i}: {Port.ports[i].GetPortName()}";
                     }
                 }
             }
