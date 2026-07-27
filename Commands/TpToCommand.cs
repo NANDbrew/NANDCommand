@@ -95,6 +95,11 @@ namespace NANDCommand.Commands
                     return;
                 }
             }
+            else
+            {
+                ModConsoleLog.Error(Plugin.instance.Info, "invalid target");
+                return;
+            }
             ModConsoleLog.Log(Plugin.instance.Info, $"moving player...");
 
             PlayerMover.MovePlayer(new Vector3(x, y, z));
