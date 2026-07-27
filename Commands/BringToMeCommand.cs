@@ -11,7 +11,7 @@ namespace NANDCommand.Commands
     {
         public override string Name => "bringToMe";
         public override string[] Aliases => new string[1] { "BTM" };
-        public override string Usage => "[scene index or vanilla boat name]";
+        public override string Usage => "[index or vanilla boat name]";
         public override string Description => "Teleport a boat (or current/last boat if unspecified) to you. Will set boat as owned\nAlias: BTM\n DO NOT USE IF YOU ARE ON LAND";
 
         public override void OnRun(List<string> args)

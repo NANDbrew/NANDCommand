@@ -53,7 +53,7 @@ Additional commands for App24's Sailwind Console Mod
 - example: `setTimeScale 200 -p`
   - result: game time moves twice normal speed aka 57.6 game minutes per real minute
 ### ExportInfo
-- usage: ExportInfo \<item type ("parts", "boats", "food", "items", "islands")> [scene index or vanilla boat name]
+- usage: ExportInfo \<item type ("parts", "boats", "food", "items", "islands")> [index or vanilla boat name]
 - exports item info and indexes to a `.csv` file. On windows it will go in: "documents/sailwind info dump/", but it will say where it put it
   - "parts" exports boat part info. Expects a boat (if unspecified it will do all of them)
   - "objects" exports all occupied indexes in `SaveLoadManager.currentObjects` (boats, mooring ropes, npc boats, storms)

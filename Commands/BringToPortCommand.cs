@@ -12,7 +12,7 @@ namespace NANDCommand.Commands
     {
         public override string Name => "bringToPort";
         public override string[] Aliases => new string[1] { "BTP" };
-        public override string Usage => "[scene index or vanilla boat name]";
+        public override string Usage => "[index or vanilla boat name]";
         public override string Description => "Teleport a boat (or current/last boat if unspecified) to the nearest recovery location. \nAlias: BTP";
 
         public override void OnRun(List<string> args)

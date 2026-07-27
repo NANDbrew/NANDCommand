@@ -13,7 +13,7 @@ namespace NANDCommand.Commands
     public class ExportInfoCommand : Command
     {
         public override string Name => "ExportInfo";
-        public override string Usage => "<parts, indexes, items, food, islands, boats> [scene index or vanilla boat name]";
+        public override string Usage => "<parts, indexes, items, food, islands, boats> [index or vanilla boat name]";
         public override string Description => "Export info to a .csv in \"Documents/Sailwind info dump\"";
         public override int MinArgs => 1;
 
