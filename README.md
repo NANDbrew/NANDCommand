@@ -144,5 +144,17 @@ Additional commands for App24's Sailwind Console Mod
 - example: `GetHeading boat sanbuq`
 ### SetWalkSpeed
 - usage: SetWalkSpeed \<float speed>
-- Set player's walking speed multiplier. 1 is default
+- set player's walking speed multiplier. 1 is default
 - aliases: "setMoveSpeed", "sws", "sms"
+### GetPrice
+- usage: GetPrice \<good name>
+- get the price of a good at all ports
+- prices are internal values, not any particular currency
+- example: `GetPrice north fish`
+### GetPriceReport
+- usage: GetPriceReport \<port name>
+- get a full price report from a port
+- prices are internal values, not any particular currency
+- example: `GetPriceReport sen'na`
+### GetNeeds
+- lists player health stats: sleep, sleep debt, water, food, food debt, protein, vitamins

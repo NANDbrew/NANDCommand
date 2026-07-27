@@ -13,7 +13,7 @@ namespace NANDCommand
     {
         public const string PLUGIN_ID = "com.nandbrew.nandcommand";
         public const string PLUGIN_NAME = "NANDCommand";
-        public const string PLUGIN_VERSION = "1.0.11";
+        public const string PLUGIN_VERSION = "1.0.12";
 
         //--settings--
         internal static ConfigEntry<bool> patchPortTeleport;
@@ -56,6 +56,9 @@ namespace NANDCommand
             ModConsole.AddCommand(new SpawnItemCommand());
             ModConsole.AddCommand(new SetProteinCommand());
             ModConsole.AddCommand(new SetVitaminsCommand());
+            ModConsole.AddCommand(new GetPriceCommand());
+            ModConsole.AddCommand(new GetPriceReportCommand());
+            ModConsole.AddCommand(new GetNeedsCommand());
 
             patchPortTeleport = Config.Bind("Settings", "Patch Port teleport", true, new ConfigDescription("Patch SailwindConsole's Teleport command so it puts you on the ground"));
 

@@ -95,6 +95,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CheatsPatch.cs" />
+    <Compile Include="Commands\GetPriceReportCommand.cs" />
+    <Compile Include="Commands\GetPriceCommand.cs" />
+    <Compile Include="Commands\GetNeedsCommand.cs" />
     <Compile Include="Commands\SetVitaminsCommand.cs" />
     <Compile Include="Commands\SetProteinCommand.cs" />
     <Compile Include="Commands\SpawnItemCommand.cs" />
