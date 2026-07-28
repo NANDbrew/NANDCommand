@@ -11,19 +11,19 @@ Additional commands for App24's Sailwind Console Mod
 - "int" means it requires a whole number e.g. 10, not 10.4
 - "float" means it can handle more precision
 - flags are an optional argument, used to change the behavior of commands that accept them
-- "vanilla boat name" means the community's short names: cog, dhow, sanbuq, etc.
+- "boat name" means the community's short names for the base game boats: cog, dhow, sanbuq, etc.
 - port names are the full name seen in the mission list, complete with spaces
 ## Commands
 ### BringToShipyard
 - usage: BringToShipyard [boat name or index]
 - boat names for vanilla boats, others must be referenced by index
-- teleport a boat (or current/last boat if unspecified) to the nearest shipyard (if loaded). Will set boat as owned
+- teleport a boat (or current/last boat if unspecified) to the nearest shipyard (if loaded)
 - alias: BTS
 - example: `BrigToShipyard brig`
 ### BringToPort 
 - usage: BringToPort [boat name or index]
 - boat names for vanilla boats, others must be referenced by index
-- teleport a boat (or current/last boat if unspecified) to the nearest recovery port (if loaded). Will set boat as owned
+- teleport a boat (or current/last boat if unspecified) to the nearest recovery port
 - alias: BTP
 - example using HappyBayBoat mod: `BringToPort 144`
 - example vanilla boat: `BringToPort junk`
@@ -33,14 +33,14 @@ Additional commands for App24's Sailwind Console Mod
 - flags: -y (also teleport all owned boats within 100m of the primary boat)
 - example: `MoveBoat 32 4.5 sanbuq`
 ### TeleportTo
-- usage: TeleportTo \<target type ("island", "boat", "object", "port", "coords")> \<target (island index, port name, boat index or boat name, lat long)>
+- usage: TeleportTo \<target type ("island", "boat", "object", "coords")> \<target (island index, boat index or boat name, lat long)>
 - boat names for vanilla boats, others must be referenced by index
 - useful for teleporting to islands with no port
 - when using "object", only accepts index, not name.
   - can target boats, anchors, mooring ropes, storms
 - alias: TpTo
-- example: `TeleportTo port fort aestrin`
-- example: `TeleportTo coords 31 -5`
+- example: `TeleportTo island 15`
+- example: `TeleportTo coords 40.34 0.63`
 ### SetTimeScale
 - usage: SetTimeScale [float multiplier] [flag]
 - sets day/night time scale.
@@ -53,7 +53,7 @@ Additional commands for App24's Sailwind Console Mod
 - example: `setTimeScale 200 -p`
   - result: game time moves twice normal speed aka 57.6 game minutes per real minute
 ### ExportInfo
-- usage: ExportInfo \<item type ("parts", "boats", "food", "items", "islands")> [index or vanilla boat name]
+- usage: ExportInfo \<item type ("parts", "boats", "food", "items", "islands")> [index or boat name]
 - exports item info and indexes to a `.csv` file. On windows it will go in: "documents/sailwind info dump/", but it will say where it put it
   - "parts" exports boat part info. Expects a boat (if unspecified it will do all of them)
   - "objects" exports all occupied indexes in `SaveLoadManager.currentObjects` (boats, mooring ropes, npc boats, storms)
@@ -74,7 +74,7 @@ Additional commands for App24's Sailwind Console Mod
 - force the weather for the specified seconds, or 10 if unspecified
 - example: `SetWeather clear 30`
 ### GetDistance
-- usage: GetDistance <target type ("island", "boat", "port")> <target (island index, boat index or vanilla boat name, port name)>
+- usage: GetDistance <target type ("island", "boat", "port")> <target (island index, boat index or boat name, port name)>
 - gets the distance from the player to the specified target
 - alias: GetDist
 - example 1 targeting Gold Rock City: `getdist island 1`
@@ -93,7 +93,7 @@ Additional commands for App24's Sailwind Console Mod
 ### SmokeFood
 - smoke currently held food item
 ### GetDamage
- - usage: GetDamage [index or vanilla boat name]
+ - usage: GetDamage [index or boat name]
  - returns the current damage percentage of the targeted boat (or current/last boat if unspecified)
 - defaults to current/last boat you were on if unspecified
 ### SetDamage
@@ -101,12 +101,12 @@ Additional commands for App24's Sailwind Console Mod
 - set the current damage percentage of the targeted boat (or current/last boat if unspecified)
 - defaults to current/last boat you were on if unspecified
 ### GetWater
-- usage: GetWater [index or vanilla boat name]
+- usage: GetWater [index or boat name]
 - returns the current water level and capacity of the targeted boat.
 - defaults to current/last boat you were on if unspecified
 - alias: getBilge
 ### SetWater
-- usage: SetWater [index or vanilla boat name] \<water level>
+- usage: SetWater [index or boat name] \<water level>
 - set the bilge water level of the targeted boat (or current/last boat if unspecified). Accepts "units" or percentage ("setWater 20" will assume units, "setWater 20%" will be percentage).
 - alias: setBilge
 - example percent: `setWater kakam 20%`
@@ -114,7 +114,7 @@ Additional commands for App24's Sailwind Console Mod
 ### ToggleDamage
 - enable/disable damage and wear globally
 ### SetOwned
-- usage: SetOwned [index or vanilla boat name] [true, false]
+- usage: SetOwned [index or boat name] [true, false]
 - change the owned status of the targeted boat (or current/last boat if unspecified)
 - if true/false is unspecified, assumes true
 - example: `setowned jong`
@@ -138,7 +138,7 @@ Additional commands for App24's Sailwind Console Mod
 - item IDs can be seen with the List command
 - example spawning a lantern hook: `SpawnItem 79`
 ### GetHeading
-- usage: GetHeading <target type (island, boat, port)> <target (island index, boat index or vanilla boat name, port name)>
+- usage: GetHeading <target type (island, boat, port)> <target (island index, boat index or boat name, port name)>
 - returns the degree heading from player to target
 - alias: getAngle
 - example: `GetHeading boat sanbuq`
