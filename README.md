@@ -158,3 +158,9 @@ Additional commands for App24's Sailwind Console Mod
 - example: `GetPriceReport sen'na`
 ### GetNeeds
 - lists player health stats: sleep, sleep debt, water, food, food debt, protein, vitamins
+### SetVitamins
+- usage: SetVitamins \<int amount>
+- set your vitamins %
+### SetProtein
+- usage: SetProtein \<int amount>
+- set your protein %
