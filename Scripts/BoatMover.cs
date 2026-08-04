@@ -11,7 +11,7 @@ namespace NANDCommand.Scripts
         public static IEnumerator IMoveBoat(Vector3 targetPos, Quaternion targetRot, Transform boat)
         {
             movingBoat = true;
-            yield return new WaitUntil(() => (GameState.wasInSettingsMenu == true));
+            yield return new WaitUntil(() => (GameState.wasInSettingsMenu == false));
 
             try
             {
@@ -20,31 +20,34 @@ namespace NANDCommand.Scripts
                 var damage = boat.GetComponent<BoatDamage>();
                 BoatMooringRopes ropes = boat.GetComponent<BoatMooringRopes>();
                 ropes.UnmoorAllRopes();
-                var anchor = ropes.GetAnchorController()?.joint.gameObject;
+                var anchor = ropes.anchor;
                 Vector3 anchorPos = Vector3.zero;
                 if (anchor) 
                 {
                     ropes.GetAnchorController().ResetAnchor();
                     anchorPos = anchor.transform.position - boat.position;
                 }
+                //else ModConsoleLog.Warn(Plugin.instance.Info, "couldn't find boat's anchor!");
 
                 damage.waterLevel = 0;
                 damage.enabled = true;
 
                 boat.GetComponent<BoatProbes>().dontUpdateVelocity = true;
 
-                yield return new WaitForFixedUpdate();
-                yield return new WaitForFixedUpdate();
-                yield return new WaitForEndOfFrame();
-                yield return new WaitForEndOfFrame();
+                //yield return new WaitForFixedUpdate();
+                //yield return new WaitForFixedUpdate();
+                //yield return new WaitForEndOfFrame();
+                //yield return new WaitForEndOfFrame();
 
-                boat.transform.position = targetPos;
+                boat.position = targetPos;
                 boat.GetComponent<Rigidbody>().velocity = Vector3.zero;
 
                 if (anchor)
                 {
-                    anchor.transform.position = targetPos + anchorPos;
+                    anchor.transform.position = anchorPos + boat.position;
                     anchor.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                    //ModConsoleLog.Log(Plugin.instance.Info, "moved anchor to " + anchor.transform.position);
+
                 }
 
                 yield return new WaitForFixedUpdate();
