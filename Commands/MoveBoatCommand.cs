@@ -24,11 +24,7 @@ namespace NANDCommand.Commands
                 ModConsoleLog.Error(Plugin.instance.Info, "can't move; already moving");
                 return;
             }
-/*            if (FloatingOriginManager.ShiftingThisFrame)
-            {
-                ModConsoleLog.Error(Plugin.instance.Info, "can't move; already moving");
-                return;
-            }*/
+
             float longitude;
             float latitude;
             if (args[0].ToLower() == "random" && args[1].ToLower() == "location")
@@ -36,10 +32,10 @@ namespace NANDCommand.Commands
                 longitude = UnityEngine.Random.Range(-12, 32);
                 latitude = UnityEngine.Random.Range(26, 46);
             }
-            else
+            else if (!(float.TryParse(args[0], out latitude) && float.TryParse(args[1], out longitude)))
             {
-                longitude = Convert.ToSingle(args[1]);
-                latitude = Convert.ToSingle(args[0]);
+                ModConsoleLog.Error(Plugin.instance.Info, "couldn't parse lat/long");
+                return;
             }
             Transform boat = BoatFinder.FindBoat();
             bool bringNearby = (args.Count > 2 && args.Last().ToLower() == "-y");
