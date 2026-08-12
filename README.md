@@ -13,6 +13,7 @@ Additional commands for App24's Sailwind Console Mod
 - flags are an optional argument, used to change the behavior of commands that accept them
 - "boat name" means the community's short names for the base game boats: cog, dhow, sanbuq, etc.
 - port names are the full name seen in the mission list, complete with spaces
+- regions are numeric indexes: 0 = al'ankh, 1 = emerald, 2 = aestrin
 ## Commands
 ### BringToShipyard
 - usage: BringToShipyard [boat name or index]
@@ -164,3 +165,83 @@ Additional commands for App24's Sailwind Console Mod
 ### SetProtein
 - usage: SetProtein \<int amount>
 - set your protein %
+
+# Commands from the base Sailwind Console mod
+### AddReputation
+- usage: addReputation \<region (0-2)> \<int amount>
+- add reputation in a certain region
+- example in Aestrin: `addReputation 2 500`
+### ClearStorm
+- clears storms
+### CookFood
+- cooks held food item
+### CurrentTime
+- Get both current local time and global time
+### GameSpeed
+- usage: gameSpeed \<float speed>
+- set the simulation speed of the game
+- default is 1
+- not to be confused with SetTimeScale
+### GetWeight
+- get the weight of held item
+- for containers, shows empty weight
+### GodMode
+- toggle god mode (this prevents your needs from going down)
+### Help
+- list all available commands
+### GetLatLong
+- get your current longitude and latitude
+### respawnShops
+- respawn all items in nearby shops
+- "nearby" means within 28 miles
+### setSeaLevel
+- change sea level in meters
+- usage: setSeaLevel \<float sea level>
+- default is 0
+- overridden by SimpleTides mod
+### SetAlcohol
+- set your alcohol level
+- usage: setAlcohol \<float amount (0-100)>
+### AddGold
+- give yourself a specified currency
+- usage: addGold \<currency type (0-3)> \<int amount>
+  - 0 = Al'Ankh Lions
+  - 1 = Emerald Dragons
+  - 2 = Aestrin Crowns
+  - 4 = Gold Lions
+- example (dragons): `addGold 1 200`
+### SetGold
+- set amount of a specified currency you have
+- usage: setGold \<currency type (0-3)> \<amount>
+- same as AddGold but sets total instead of adding
+### SetHunger
+- set your food amount
+- usage: setHunger \<float amount (0-100)>
+### SetThirst
+- set your thirst
+- usage: setThirst \<float amount (0-100)>
+- 0 = dying of thirst, 1 = not thirsty
+### SetSleep
+- set your sleep
+- usage: setSleep \<float amount (0-100)>
+### SetStorm
+- place a storm at your location
+### SetTime
+- set the time of day, you can go above 24 hours to skip days
+- usage: setTime \<float time>
+- sets global time (time at 0° longitude)
+### SetWaveHeight
+- set wave height
+- usage: setWaveHeight \<float wave height>
+### SetWindSpeed
+- set wind speed based on predefined values (Storm, Gale, Breeze, Calm)
+- usage: setWindSpeed <wind speed (Storm, Gale, Breeze, Calm)>
+- example: `setWindSpeed breeze`
+### ShowPorts
+- show all the ports' names
+### ShowRegions
+- show all the regions' names
+### Teleport
+- teleport to a port
+- usage: teleport \<port name>
+- this takes the full name as seen in the "Welcome to:" pane of the mission list UI, including spaces and other punctuation
