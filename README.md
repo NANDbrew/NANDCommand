@@ -4,6 +4,7 @@ Additional commands for App24's Sailwind Console Mod
 - Patch Port teleport
   - fix SailwindConsole's Teleport command so it puts you on the ground
 ## How to use this ReadMe
+- all commands and arguments are case insensitive. For example: `BringToPort Cog` is the same as `bringtoport cog` is the same as `BRINGTOPORT COG`
 - less than/greater than signs '<' and '>' mean the argument is required
 - parentheses '(' and ')' mean the words inside them are interchangable options e.g. "island" or "boat"
 - quotation marks, brackets, etc. are not part of the command. They're just here to tell you what they are
@@ -11,7 +12,8 @@ Additional commands for App24's Sailwind Console Mod
 - "int" means it requires a whole number e.g. 10, not 10.4
 - "float" means it can handle more precision
 - flags are an optional argument, used to change the behavior of commands that accept them
-- "boat name" means the community's short names for the base game boats: cog, dhow, sanbuq, etc.
+- "boat name" means the community's short names for the base game boats: cog, dhow, kakam, sanbuq, brig, junk, and jong
+  - mod boats can only be referenced by index
 - port names are the full name seen in the mission list, complete with spaces and punctuation
 - regions are numeric indexes: 0 = al'ankh, 1 = emerald, 2 = aestrin
 ## Commands
@@ -55,7 +57,7 @@ Additional commands for App24's Sailwind Console Mod
   - result: game time moves twice normal speed aka 57.6 game minutes per real minute
 ### ExportInfo
 - usage: ExportInfo \<item type ("parts", "boats", "food", "items", "islands")> [index or boat name]
-- exports item info and indexes to a `.csv` file. On windows it will go in: "documents/sailwind info dump/", but it will say where it put it
+- exports item info and indexes to a `.csv` file. On windows it will go in: "documents/sailwind info dump/", but it will say where it gets put
   - "parts" exports boat part info. Expects a boat (if unspecified it will do all of them)
   - "objects" exports all occupied indexes in `SaveLoadManager.currentObjects` (boats, mooring ropes, npc boats, storms)
   - "food" exports food items info (name, mass, energy, etc.)
@@ -65,7 +67,7 @@ Additional commands for App24's Sailwind Console Mod
 ### CheatSpeed
 - usage: CheatSpeed [float speed]
 - if speed is unspecified, resets to 0
-- if set to a positive number, enables driving the boat forward/backward with W/S while holding a boat's steering wheel
+- enables driving the boat forward/backward with W/S while holding a boat's steering wheel
 ### SetWindKnots
 - usage: SetWindKnots \<float knots>
 - sets the wind speed to the specified speed
@@ -81,7 +83,7 @@ Additional commands for App24's Sailwind Console Mod
 - example 1 targeting Gold Rock City: `getdist island 1`
 - example 2 targeting Gold Rock City: `getdist port gold rock city`
 ### FixMe
-- usage: FixMe [distance]
+- usage: FixMe [height]
 - teleports the player upward to hopefully get out of sticky situations
 - if distance is not specified, defaults to 5m
 ### BringToMe
