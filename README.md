@@ -12,7 +12,7 @@ Additional commands for App24's Sailwind Console Mod
 - "float" means it can handle more precision
 - flags are an optional argument, used to change the behavior of commands that accept them
 - "boat name" means the community's short names for the base game boats: cog, dhow, sanbuq, etc.
-- port names are the full name seen in the mission list, complete with spaces
+- port names are the full name seen in the mission list, complete with spaces and punctuation
 - regions are numeric indexes: 0 = al'ankh, 1 = emerald, 2 = aestrin
 ## Commands
 ### BringToShipyard
@@ -244,4 +244,3 @@ Additional commands for App24's Sailwind Console Mod
 ### Teleport
 - teleport to a port
 - usage: teleport \<port name>
-- this takes the full name as seen in the "Welcome to:" pane of the mission list UI, including spaces and other punctuation
