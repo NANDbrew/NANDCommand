@@ -241,7 +241,7 @@ namespace NANDCommand.Commands
                     text += partOption.installCost.ToString() + separator;
                     text += partOption.mass;
 
-                    Mast mast = partOption.gameObject.GetComponent<Mast>();
+                    Mast mast = partOption.gameObject.GetComponent<Mast>() ?? partOption.gameObject.GetComponentInChildren<Mast>();
                     if (mast != null)
                     {
                         text += separator;
