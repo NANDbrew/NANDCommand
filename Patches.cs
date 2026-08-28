@@ -35,10 +35,21 @@ namespace NANDCommand
             {
                 if (___logText.text.Length > 20000)
                 {
-                    int amount = ___logText.text.Length - 20100;
-                    ___logText.text = "..." + ___logText.text.Remove(0, amount);// ___logText.text.IndexOf(Environment.NewLine, amount));
+                    int amount = ___logText.text.Length - 20000;
+                    //___logText.text = "..." + ___logText.text.Remove(0, amount);// ___logText.text.IndexOf(Environment.NewLine, amount));
+                    ___logText.text = ___logText.text.Remove(0, ___logText.text.IndexOf(Environment.NewLine, amount));
                     Debug.Log($"NANDCommand: trimmed {amount} chars off mod console log");
                 }
+            }
+        }
+
+        [HarmonyPatch(typeof(ModConsole), "InitConsole")]
+        internal static class ConsoleTextThing
+        {
+            internal static Text logText;
+            private static void Postfix(Text ___logText)
+            {
+                logText = ___logText;
             }
         }
     }

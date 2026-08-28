@@ -121,6 +121,7 @@
     <Compile Include="Commands\FixMeCommand.cs" />
     <Compile Include="Commands\SetWeatherCommand.cs" />
     <Compile Include="Commands\GetHeadingCommand.cs" />
+    <Compile Include="Commands\ClearCommand.cs" />
     <Compile Include="Commands\ToggleDamageCommand.cs" />
     <Compile Include="Commands\SetWindKnotsCommand.cs" />
     <Compile Include="Commands\GetDistanceCommand.cs" />
