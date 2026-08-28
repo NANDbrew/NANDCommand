@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using SailwindConsole;
 using SailwindConsole.Commands;
 using UnityEngine;
@@ -25,7 +26,7 @@ namespace NANDCommand.Commands
                     var boat = SaveLoadManager.instance.GetCurrentObjects()[i];
                     if (boat != null && boat.GetComponent<PurchasableBoat>() != null)
                     {
-                        text += $"\nindex {i}: {boat.name}";
+                        text += $"{Environment.NewLine}index {i}: {boat.name}";
                     }
                 }
             }
@@ -37,7 +38,7 @@ namespace NANDCommand.Commands
                     var obj = SaveLoadManager.instance.GetCurrentObjects()[i];
                     if (obj != null)
                     {
-                        text += $"\nindex {i}: {obj.name}";
+                        text += $"{Environment.NewLine}index {i}: {obj.name}";
                     }
                 }
             }
@@ -48,7 +49,7 @@ namespace NANDCommand.Commands
                 {
                     if (Refs.islands[i] != null)
                     {
-                        text += "\n" + Refs.islands[i].name;
+                        text += "{Environment.NewLine}" + Refs.islands[i].name;
                     }
                 }
             }
@@ -59,7 +60,7 @@ namespace NANDCommand.Commands
                 {
                     if (Port.ports[i] != null)
                     {
-                        text += $"\nport {i}: {Port.ports[i].GetPortName()}";
+                        text += $"{Environment.NewLine}port {i}: {Port.ports[i].GetPortName()}";
                     }
                 }
             }
@@ -70,7 +71,7 @@ namespace NANDCommand.Commands
                 {
                     if (PrefabsDirectory.instance.directory[i] != null)
                     {
-                        text += $"\nindex {i}: {PrefabsDirectory.instance.directory[i].name}";
+                        text += $"{Environment.NewLine}index {i}: {PrefabsDirectory.instance.directory[i].name}";
                     }
                 }
             }
