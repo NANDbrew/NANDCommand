@@ -49,7 +49,7 @@ namespace NANDCommand.Commands
                 {
                     if (Refs.islands[i] != null)
                     {
-                        text += "{Environment.NewLine}" + Refs.islands[i].name;
+                        text += Environment.NewLine + Refs.islands[i].name;
                     }
                 }
             }
