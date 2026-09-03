@@ -95,11 +95,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CheatsPatch.cs" />
+    <Compile Include="Commands\FillNeedsCommand.cs" />
+    <Compile Include="Commands\SetNeedsCommand.cs" />
     <Compile Include="Commands\GetPriceReportCommand.cs" />
     <Compile Include="Commands\GetPriceCommand.cs" />
     <Compile Include="Commands\GetNeedsCommand.cs" />
     <Compile Include="Commands\SetVitaminsCommand.cs" />
     <Compile Include="Commands\SetProteinCommand.cs" />
+    <Compile Include="Commands\GetCurrentRegionCommand.cs" />
     <Compile Include="Commands\SpawnItemCommand.cs" />
     <Compile Include="Commands\SetLevelCommand.cs" />
     <Compile Include="Commands\AddMoneyCommand.cs" />
