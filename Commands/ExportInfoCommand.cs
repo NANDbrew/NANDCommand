@@ -226,13 +226,14 @@ namespace NANDCommand.Commands
         {
             string separator = ",";
             Debug.Log("attempting to save part info");
-            string text = "index,transform,option name,base price,install cost,mass,mast height,max. sails,index" + Environment.NewLine;
+            string text = "index,transform,option name,base price,install cost,mass,mast height,max. sails,mast index,comment" + Environment.NewLine;
             for (int i = 0; i < parts.availableParts.Count; i++)
             {
                 var part = parts.availableParts[i];
                 text += i.ToString() + Environment.NewLine;
                 for (int j = 0; j < part.partOptions.Count; j++)
                 {
+                    string comment = "";
                     var partOption = part.partOptions[j];
                     text += j.ToString() + separator;
                     text += partOption.name + separator;
@@ -241,15 +242,24 @@ namespace NANDCommand.Commands
                     text += partOption.installCost.ToString() + separator;
                     text += partOption.mass;
 
-                    Mast mast = partOption.gameObject.GetComponent<Mast>() ?? partOption.gameObject.GetComponentInChildren<Mast>();
+                    Mast mast = partOption.gameObject.GetComponent<Mast>();
+                    if (mast == null)
+                    {
+                        mast = partOption.gameObject.GetComponentInChildren<Mast>();
+                        comment = "mast is child";
+                    }
+                    text += separator;
                     if (mast != null)
                     {
-                        text += separator;
-                        text += mast.mastHeight.ToString() + separator;
-                        text += mast.maxSails.ToString();
+                        text += mast.mastHeight.ToString();
+                        text += separator + mast.maxSails.ToString();
                         text += separator + mast.orderIndex.ToString();
                         //text += mast.extraBottomHeight;
                     }
+                    else text += separator + separator;
+
+                    text += separator + comment;
+
                     text += Environment.NewLine;
                 }
             }
