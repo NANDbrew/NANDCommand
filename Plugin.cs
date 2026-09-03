@@ -8,12 +8,12 @@ using System.Reflection;
 namespace NANDCommand
 {
     [BepInPlugin(PLUGIN_ID, PLUGIN_NAME, PLUGIN_VERSION)]
-    [BepInDependency("com.app24.sailwindconsole", "1.0.1")]
+    [BepInDependency("com.app24.sailwindconsole", "1.1.0")]
     public class Plugin : BaseUnityPlugin
     {
         public const string PLUGIN_ID = "com.nandbrew.nandcommand";
         public const string PLUGIN_NAME = "NANDCommand";
-        public const string PLUGIN_VERSION = "1.0.13";
+        public const string PLUGIN_VERSION = "1.0.14";
 
         //--settings--
         internal static ConfigEntry<bool> patchPortTeleport;

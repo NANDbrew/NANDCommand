@@ -14,7 +14,7 @@ namespace NANDCommand.Commands
         public override int MinArgs => 0;
         public override string Usage => "FillNeeds";
 
-        public override string Description => "Fill the player's health stats completely";
+        public override string Description => "Fill your survival completely";
 
         public override void OnRun(List<string> args)
         {

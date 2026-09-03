@@ -167,6 +167,14 @@ Additional commands for App24's Sailwind Console Mod
 ### SetProtein
 - usage: SetProtein \<int amount>
 - set your protein %
+### SetNeeds
+- usage: SetNeeds \<float sleep (100 +/-)> \<float thirst (0-100)> \<float hunger (100 +/-)> [float vitamins (0-100)]
+- Set your health stats. Sleep and hunger can be negative, and will dip into their respective debts, vitamins is optional
+- example: `SetNeeds 50 100 95`
+### FillNeeds
+- Fill your survival needs completely
+### GetCurrentRegion
+- Get the current weather/port region
 
 # Commands from the base Sailwind Console mod
 ### AddReputation
