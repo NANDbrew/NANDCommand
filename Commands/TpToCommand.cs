@@ -13,7 +13,7 @@ namespace NANDCommand.Commands
         public override string Name => "TeleportTo";
         public override string[] Aliases => new string[1] { "TPTo" };
 
-        public override string Usage => "<target type (island, coords, boat, object)> <target (island index, lat long, boat index or vanilla boat name)>";
+        public override string Usage => "<target type (island, coords, boat, object, port)> <target (island index, lat long, boat index or vanilla boat name, port name or index)>";
         public override string Description => "Teleport to scenery, coords, or boat";
         public override int MinArgs => 2;
 
@@ -94,6 +94,33 @@ namespace NANDCommand.Commands
                     ModConsoleLog.Error(Plugin.instance.Info, "couldn't find target");
                     return;
                 }
+            }
+            else if (args[0].ToLower() == "port")
+            {
+                if (int.TryParse(args[1], out int index) && Port.ports[index] != null)
+                {
+                    x = Port.ports[index].transform.position.x;
+                    y = 10f;
+                    z = Port.ports[index].transform.position.z;
+
+                }
+                else
+                {
+                    args.RemoveAt(0);
+                    string text = string.Join(" ", args);
+                    Port[] ports = Port.ports;
+                    foreach (Port port in ports)
+                    {
+                        if ((bool)port && port.GetPortName().ToLower() == text.ToLower())
+                        {
+                            x = port.transform.position.x;
+                            y = 10f;
+                            z = port.transform.position.z;
+                            break;
+                        }
+                    }
+                }
+
             }
             else
             {
