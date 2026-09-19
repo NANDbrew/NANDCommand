@@ -13,14 +13,11 @@ namespace NANDCommand
         {
             [HarmonyPatch("Impact")]
             [HarmonyPrefix]
-            public static void ImpactPatch(ref float force)
+            public static bool ImpactPatch()
             {
-                if (Plugin.ignoreDamage)
-                {
-                    force = 0;
-                }
+                return !Plugin.ignoreDamage;
             }
-            [HarmonyPatch("Impact")]
+            [HarmonyPatch("DailyDamage")]
             [HarmonyPrefix]
             public static bool DailyDamagePatch()
             {
