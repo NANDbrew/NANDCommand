@@ -1,8 +1,5 @@
 # NANDCommand
 Additional commands for App24's Sailwind Console Mod
-## Settings
-- Patch Port teleport
-  - fix SailwindConsole's Teleport command so it puts you on the ground
 ## How to use this ReadMe
 - all commands and arguments are case insensitive. For example: `BringToPort Cog` is the same as `bringtoport cog` is the same as `BRINGTOPORT COG`
 - less than/greater than signs '<' and '>' mean the argument is required
