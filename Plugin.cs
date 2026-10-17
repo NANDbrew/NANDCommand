@@ -67,7 +67,7 @@ namespace NANDCommand
             ModConsole.AddCommand(new SetNeedsCommand());
             ModConsole.AddCommand(new FillNeedsCommand());
             ModConsole.AddCommand(new NextPageCommand());
-            ModConsole.AddCommand(new WriteLineCommand());
+            ModConsole.AddCommand(new EchoCommand());
             ModConsole.AddCommand(new GetWeightCommand());
             ModConsole.AddCommand(new FindItemCommand());
             ModConsole.AddCommand(new SmallItemsCommand());

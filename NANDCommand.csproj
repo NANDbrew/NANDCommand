@@ -130,7 +130,7 @@
     <Compile Include="Commands\TeleportCommand.cs" />
     <Compile Include="Commands\FindItemCommand.cs" />
     <Compile Include="Commands\SmallItemsCommand.cs" />
-    <Compile Include="Commands\WriteLineCommand.cs" />
+    <Compile Include="Commands\EchoCommand.cs" />
     <Compile Include="Commands\ToggleDamageCommand.cs" />
     <Compile Include="Commands\SetWindKnotsCommand.cs" />
     <Compile Include="Commands\GetDistanceCommand.cs" />

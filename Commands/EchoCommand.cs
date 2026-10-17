@@ -5,9 +5,9 @@ using System.Linq;
 
 namespace NANDCommand.Commands
 {
-    internal class WriteLineCommand : Command
+    internal class EchoCommand : Command
     {
-        public override string Name => "WriteLine";
+        public override string Name => "Echo";
         public override int MinArgs => 0;
         public override string Usage => "";
 
