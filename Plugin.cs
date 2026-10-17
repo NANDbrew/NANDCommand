@@ -72,7 +72,7 @@ namespace NANDCommand
             ModConsole.AddCommand(new FindItemCommand());
             ModConsole.AddCommand(new SmallItemsCommand());
 
-            commandOverrides = Config.Bind("Settings", "Command overrides", false, new ConfigDescription("Replace the base console mod's Teleport and GetWeight commands with this mod's improved versions"));
+            commandOverrides = Config.Bind("Settings", "Command overrides", true, new ConfigDescription("Replace the base console mod's Teleport and GetWeight commands with this mod's improved versions"));
 
             if (commandOverrides.Value)
             {
