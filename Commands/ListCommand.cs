@@ -11,7 +11,7 @@ namespace NANDCommand.Commands
         public override string Name => "list";
         //public override string[] Aliases => new string[1] { "" };
 
-        public override string Usage => "<type (boats, islands, items, ports, objects)>";
+        public override string Usage => "<type (boats, islands, items, ports, objects, sails)>";
         public override string Description => "List objects of the specified type";
         public override int MinArgs => 1;
 
@@ -26,7 +26,7 @@ namespace NANDCommand.Commands
                     var boat = SaveLoadManager.instance.GetCurrentObjects()[i];
                     if (boat != null && boat.GetComponent<PurchasableBoat>() != null)
                     {
-                        text += $"{Environment.NewLine}index {i}: {boat.name}";
+                        text += $"{Environment.NewLine}[<color=blue>index {i}</color>]: {boat.name}";
                     }
                 }
             }
@@ -38,7 +38,7 @@ namespace NANDCommand.Commands
                     var obj = SaveLoadManager.instance.GetCurrentObjects()[i];
                     if (obj != null)
                     {
-                        text += $"{Environment.NewLine}index {i}: {obj.name}";
+                        text += $"{Environment.NewLine}[<color=blue>index {i}</color>]: {obj.name}";
                     }
                 }
             }
@@ -60,18 +60,30 @@ namespace NANDCommand.Commands
                 {
                     if (Port.ports[i] != null)
                     {
-                        text += $"{Environment.NewLine}port {i}: {Port.ports[i].GetPortName()}";
+                        text += $"{Environment.NewLine}[<color=blue>port {i}</color>]: {Port.ports[i].GetPortName()}";
                     }
                 }
             }
             else if (args[0].ToLower() == "items")
             {
                 text = "found items:";
-                for (int i = 0; i < PrefabsDirectory.instance.directory.Length; i++)
+                for (int i = 0; i < PrefabsDirectory.instance.shipItems.Length; i++)
                 {
-                    if (PrefabsDirectory.instance.directory[i] != null)
+                    if (PrefabsDirectory.instance.shipItems[i] != null)
                     {
-                        text += $"{Environment.NewLine}index {i}: {PrefabsDirectory.instance.directory[i].name}";
+                        text += $"{Environment.NewLine}[<color=blue>index {i}</color>]: {PrefabsDirectory.instance.shipItems[i].name}<color={LogColor.InternalName}> {PrefabsDirectory.instance.shipItems[i].gameObject.name}</color>";
+                    }
+                }
+            }
+            else if (args[0].ToLower() == "sails")
+            {
+                text = "found sails:";
+                for (int i = 0; i < PrefabsDirectory.instance.sails.Length; i++)
+                {
+                    var obj = PrefabsDirectory.instance.sails[i];
+                    if (obj != null)
+                    {
+                        text += $"{Environment.NewLine}[<color=blue>index {i}</color>]:{obj.GetComponent<Sail>().sailName}<color={LogColor.InternalName}> {obj.name}</color>";
                     }
                 }
             }
@@ -79,7 +91,9 @@ namespace NANDCommand.Commands
             {
                 text = "unknown object type"; 
             }
-            ModConsoleLog.Log(Plugin.instance.Info, text);
+            //text += Environment.NewLine;
+
+            ModConsoleLog.Log(Plugin.instance.Info, Plugin.ClipEnd(text));
         }
 
     }
