@@ -52,12 +52,12 @@ namespace NANDCommand.Commands
                     string buy = (prices.buyPrices[i] != 0) ? prices.buyPrices[i].ToString() : "n/a";
                     string sell = (prices.sellPrices[i] != 0) ? prices.sellPrices[i].ToString() : "n/a";
 
-                    text += $"\n  {item.name} => buy: {buy}, sell: {sell}";
+                    text += $"{Environment.NewLine}  {item.name} => buy: {buy}, sell: {sell}";
                 }
             }
 
 
-            ModConsoleLog.Log(Plugin.instance.Info, $"Prices at {targetPort.GetPortName()}:{text}");
+            ModConsoleLog.Log(Plugin.instance.Info, $"Prices at {targetPort.GetPortName()}:{Plugin.ClipEnd(text)}");
 
             //ModConsoleLog.Error(Plugin.instance.Info, "Cannot have a value below 0!");
             
