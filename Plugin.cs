@@ -68,7 +68,6 @@ namespace NANDCommand
             ModConsole.AddCommand(new FillNeedsCommand());
             ModConsole.AddCommand(new NextPageCommand());
             ModConsole.AddCommand(new EchoCommand());
-            ModConsole.AddCommand(new GetWeightCommand());
             ModConsole.AddCommand(new FindItemCommand());
             ModConsole.AddCommand(new SmallItemsCommand());
 
@@ -77,6 +76,7 @@ namespace NANDCommand
             if (commandOverrides.Value)
             {
                 ModConsole.AddCommand(new TeleportCommand());
+                ModConsole.AddCommand(new GetWeightCommand());
             }
         }
 
