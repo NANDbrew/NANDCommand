@@ -3,6 +3,7 @@ using BepInEx.Configuration;
 using HarmonyLib;
 using NANDCommand.Commands;
 using SailwindConsole;
+using System;
 using System.Reflection;
 
 namespace NANDCommand
@@ -13,10 +14,13 @@ namespace NANDCommand
     {
         public const string PLUGIN_ID = "com.nandbrew.nandcommand";
         public const string PLUGIN_NAME = "NANDCommand";
-        public const string PLUGIN_VERSION = "1.0.15";
+        public const string PLUGIN_VERSION = "1.0.16";
 
         //--settings--
-        //internal static ConfigEntry<bool> patchPortTeleport;
+        internal static int logLimit = 20000;
+        internal static ConfigEntry<bool> commandOverrides;
+
+        public static string consoleOverflow;
 
         internal static bool ignoreDamage = false;
 
@@ -62,11 +66,53 @@ namespace NANDCommand
             ModConsole.AddCommand(new ClearCommand());
             ModConsole.AddCommand(new SetNeedsCommand());
             ModConsole.AddCommand(new FillNeedsCommand());
-            //ModConsole.AddCommand(new GetCurrentRegionCommand());
-            //ModConsole.AddCommand(new GetCurrentRegionCommand());
+            ModConsole.AddCommand(new NextPageCommand());
+            ModConsole.AddCommand(new WriteLineCommand());
+            ModConsole.AddCommand(new GetWeightCommand());
+            ModConsole.AddCommand(new FindItemCommand());
+            ModConsole.AddCommand(new SmallItemsCommand());
 
-            //patchPortTeleport = Config.Bind("Settings", "Patch Port teleport", true, new ConfigDescription("Patch SailwindConsole's Teleport command so it puts you on the ground"));
+            commandOverrides = Config.Bind("Settings", "Command overrides", false, new ConfigDescription("Replace the base console mod's Teleport and GetWeight commands with this mod's improved versions"));
 
+            if (commandOverrides.Value)
+            {
+                ModConsole.AddCommand(new TeleportCommand());
+            }
         }
+
+        public static string ClipStart(string text)
+        {
+            if (text.Length > logLimit)
+            {
+                int cutPoint = text.IndexOf(Environment.NewLine, text.Length - logLimit);
+                UnityEngine.Debug.Log($"NANDCommand: trimmed {cutPoint} chars off mod console log start");
+                text = "*snip*" + text.Substring(cutPoint);
+            }
+            return text;
+        }
+
+        public static string ClipEnd(string text)
+        {
+            if (text.Length > logLimit)
+            {
+                int cutPoint = text.LastIndexOf(Environment.NewLine, logLimit - 200);
+
+                consoleOverflow = text.Substring(cutPoint);
+                UnityEngine.Debug.Log($"NANDCommand: trimmed {text.Length - cutPoint} chars off mod console log end");
+
+                text = text.Substring(0, cutPoint);
+                text += Environment.NewLine + $"<color=green>Continues... press enter</color>";
+
+            }
+            else { consoleOverflow = null; }
+            
+            return text;
+        }
+    }
+
+    internal static class LogColor
+    {
+        internal static string InternalName = "#606060";
+        internal static string Orange = "#a05500";
     }
 }

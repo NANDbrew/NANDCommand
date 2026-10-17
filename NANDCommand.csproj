@@ -125,6 +125,12 @@
     <Compile Include="Commands\SetWeatherCommand.cs" />
     <Compile Include="Commands\GetHeadingCommand.cs" />
     <Compile Include="Commands\ClearCommand.cs" />
+    <Compile Include="Commands\NextPageCommand.cs" />
+    <Compile Include="Commands\GetWeightCommand.cs" />
+    <Compile Include="Commands\TeleportCommand.cs" />
+    <Compile Include="Commands\FindItemCommand.cs" />
+    <Compile Include="Commands\SmallItemsCommand.cs" />
+    <Compile Include="Commands\WriteLineCommand.cs" />
     <Compile Include="Commands\ToggleDamageCommand.cs" />
     <Compile Include="Commands\SetWindKnotsCommand.cs" />
     <Compile Include="Commands\GetDistanceCommand.cs" />

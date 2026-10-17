@@ -119,7 +119,7 @@ Additional commands for App24's Sailwind Console Mod
 - if true/false is unspecified, assumes true
 - example: `setowned jong`
 ### List
-- usage: List \<type ("boats", "islands", "items", "ports")>
+- usage: List \<type ("boats", "islands", "items", "ports", "sails")>
 - lists all present objects of the specified types and their IDs
 - example: `List boats`
 ### AddMoney
@@ -169,9 +169,29 @@ Additional commands for App24's Sailwind Console Mod
 - Set your health stats. Sleep and hunger can be negative, and will dip into their respective debts, vitamins is optional
 - example: `SetNeeds 50 100 95`
 ### FillNeeds
-- Fill your survival needs completely
+- fill your survival needs completely
 ### GetCurrentRegion
-- Get the current weather/port region
+- get the current weather/port region
+### FindItem
+- usage: FindItem \<search term>
+- find an item's index and internal name
+- example: `FindItem chrono`
+  - returns items with "chrono" in their name or internal name (chronometers, chronocompasses)
+### GetWeight
+- overrides the base console mod version
+- includes weight of items in crates
+### Teleport
+- overrides the base console mod version
+- works the same as `TpTo port`
+### NextPage
+- alias: np
+- used to display the next page of paginated command output
+- only does anything if you have queued pages
+### SmallItems
+- classifies all items as "small" when they're picked up (this means they can fit in inventories)
+- command toggles this patch on or off
+### WriteLine
+- a debug tool to help NANDbrew write formatting for command output
 
 # Commands from the base Sailwind Console mod
 ### AddReputation
