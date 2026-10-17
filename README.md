@@ -1,8 +1,8 @@
 # NANDCommand
 Additional commands for App24's Sailwind Console Mod
 ## Settings
-- Patch Port teleport
-  - fix SailwindConsole's Teleport command so it puts you on the ground
+- Command overrides
+  - Replace the base console mod's Teleport and GetWeight commands with this mod's improved versions
 ## How to use this ReadMe
 - all commands and arguments are case insensitive. For example: `BringToPort Cog` is the same as `bringtoport cog` is the same as `BRINGTOPORT COG`
 - less than/greater than signs '<' and '>' mean the argument is required
@@ -191,10 +191,14 @@ Additional commands for App24's Sailwind Console Mod
 - used to display the next page of paginated command output
 - only does anything if you have queued pages
 ### SmallItems
-- classifies all items as "small" when they're picked up (this means they can fit in inventories)
-- command toggles this patch on or off
-### WriteLine
-- a debug tool to help NANDbrew write formatting for command output
+- classifies all items as "small" when they're picked up, so they'll fit in inventories
+  - items that have been smallified will not be embiggened when this is turned back off
+  - reloading will reset everything
+- command toggles this effect on or off
+### Echo
+- usage: Echo \<your text here>
+- write some text to the console log
+- this is a debug tool to help with text formatting
 
 # Commands from the base Sailwind Console mod
 ### AddReputation
