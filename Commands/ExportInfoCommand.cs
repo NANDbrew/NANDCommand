@@ -70,6 +70,10 @@ namespace NANDCommand.Commands
             {
                 texts.Add("boats", GetBoatsInfo());
             }
+            else
+            {
+                ModConsoleLog.Log(Plugin.instance.Info, "Usage: " + Usage);
+            }
 
             foreach (var text in texts)
             {
